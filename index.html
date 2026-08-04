@@ -243,6 +243,7 @@ Frecuencia: mi materia tiene ${p.spw===1?'una sesión':p.spw===3?'tres sesiones'
 
 FORMATO DE RESPUESTA, OBLIGATORIO
 No uses tablas en ninguna parte de la respuesta. Ni tablas de Markdown, ni columnas, ni celdas. Se pierden al copiar y pegar.
+No uses emojis, rombos, flechas, vistos, estrellas ni ninguna viñeta gráfica en ningún punto de la respuesta. Solo texto y los guiones normales. Esos símbolos rompen la maquetación del documento final.
 Respeta exactamente las etiquetas de abajo, incluidos los dos puntos. Escribe cada etiqueta al inicio de su propia línea. No agregues texto antes ni después de la estructura.
 
 Título: [nombre concreto del reto, sin adjetivos]
@@ -252,10 +253,26 @@ Gancho: [máximo 30 palabras: la situación con la que abro la sesión y que hac
 ## Parte 1. El punto de partida
 
 Hoy: [qué logra ya la clase que te describí. Una frase, sin adularme y sin condescendencia. Nombra lo que sí funciona.]
-Con Emprendimiento Sostenible: [qué le agregaría este componente a la clase que te describí. Una frase concreta, aplicada a mi tema, no una definición.]
-Con Poder Humano: [lo mismo para este componente. Recuerda que son conductas verificables, no actitudes.]
-Con Tech AI Maker: [lo mismo para este componente. No basta con usar una herramienta: el estudiante tiene que juzgar, auditar o decidir sobre lo que la IA produjo.]
+Nivel general: [ausente, inicial, básico, intermedio o avanzado], porque [una frase que lo sustente]
+
+Componente: Emprendimiento Sostenible
+Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
+Qué falta: [qué le falta a mi clase actual, en este componente, para subir un nivel. Una frase concreta.]
+Qué aporta: [qué le agregaría este componente a mi clase. Una frase aplicada a mi tema, no una definición.]
+
+Componente: Poder Humano
+Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
+Qué falta: [una frase. Recuerda que sus capacidades son conductas verificables, no actitudes: si no se ve la diferencia entre un estudiante que lo desarrolló y uno que no, el nivel es ausente.]
+Qué aporta: [una frase aplicada a mi tema]
+
+Componente: Tech AI Maker
+Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
+Qué falta: [una frase. No basta con usar una herramienta: si el estudiante no tiene que juzgar, auditar o decidir sobre lo que la IA produjo, el nivel es ausente.]
+Qué aporta: [una frase aplicada a mi tema]
+
 Trampa: [la versión que parece cumplir el modelo y no lo cumple, con la razón exacta por la que se distingue de lo que me vas a proponer.]
+
+Sé honesto con los niveles. Si un componente está ausente en mi clase actual, dilo. Un diagnóstico complaciente no me sirve para nada.
 
 ## Parte 2. La actividad rediseñada
 
@@ -349,7 +366,7 @@ Factor: [el que domina esa sesión]
 Estrategia: [nombre exacto]
 Ocurre: [una frase concreta]
 
-[Repite ese bloque exactamente ${A.ses} veces, una por sesión, cada una con un factor dominante distinto. Marca con un rombo antes del foco la sesión que corresponde al reto que ya diseñaste. Recuerda que son ${A.txt}: si hay más de una semana, cuida que cada sesión cierre algo utilizable, porque entre una y otra pasan siete días.]
+[Repite ese bloque exactamente ${A.ses} veces, una por sesión, cada una con un factor dominante distinto. En la sesión que corresponde al reto que ya diseñaste, y solo en esa, agrega una línea más que diga exactamente: Es la sesión del reto: sí Recuerda que son ${A.txt}: si hay más de una semana, cuida que cada sesión cierre algo utilizable, porque entre una y otra pasan siete días.]
 
 Producto: [la pieza de portafolio que entregan al cerrar la unidad]
 Progresión: [cómo sube la exigencia entre la primera y la última sesión]
@@ -386,7 +403,7 @@ const pelar = t => String(t).replace(/^#{1,6}\s*/,'').replace(/\*\*/g,'').replac
   .replace(/`/g,'').replace(/^>\s*/,'').replace(/^[-•]\s+/,'').replace(/\t+/g,' · ').trim();
 
 const seguro = t => String(t==null?'':t)
-  .replace(/[\u25A0-\u25FF\u2700-\u27BF\u2190-\u21FF\u2B00-\u2BFF]/g,'')
+  .replace(/[\u25A0-\u25FF\u2600-\u27BF\u2190-\u21FF\u2B00-\u2BFF\uFE0F\u2022]/g,'')
   .replace(/[\u{1F000}-\u{1FAFF}]/gu,'')
   .replace(/\s{2,}/g,' ').trim();
 
@@ -397,11 +414,11 @@ function etiqueta(linea){
 }
 
 function leer(texto){
-  const D = { titulo:'', ficha:'', gancho:'', hoy:'', falta:'', mej:{}, prepara:[], riesgos:[], rubricas:[],
+  const D = { titulo:'', ficha:'', gancho:'', hoy:'', falta:'', general:'', comps:[], prepara:[], riesgos:[], rubricas:[],
               momentos:[], evidencia:'', criterios:[],
               p5:{}, contra:'', factores:[], exponente:'', ser:'', saber:'', saberhacer:'',
               ab:{}, unidad:'', sesiones:[], producto:'', progresion:'', libre:[] };
-  let mom=null, fac=null, ses=null, rub=null;
+  let mom=null, fac=null, ses=null, rub=null, comp=null;
 
   for(const bruta of texto.split('\n')){
     const l = pelar(bruta);
@@ -415,7 +432,8 @@ function leer(texto){
     // Cabecera de sesión: Sesión 1 · Foco
     const sm = l.match(/^sesi[oó]n\s*(\d+)\s*[·|:\-–—]\s*(.+)$/i);
     if(sm){ const f0=sm[2];
-            ses={n:sm[1], foco:f0.replace(/[◆◇■●▪]/g,'').trim(), marcada:/[◆◇■●▪]/.test(f0),
+            ses={n:sm[1], foco:f0.replace(/[\u2000-\u200F\u2022\u25A0-\u25FF\u2600-\u27BF\u2B00-\u2BFF]/g,'').replace(/\s{2,}/g,' ').trim(),
+                 marcada:/[\u25A0-\u25FF\u2600-\u27BF]/.test(f0),
                  factor:'', estrategia:'', ocurre:''};
             D.sesiones.push(ses); mom=null; fac=null; continue; }
 
@@ -444,9 +462,15 @@ function leer(texto){
       if(k==='abundancia'){ D.p5.abundancia=v; continue; }
       if(k==='hoy'){ D.hoy=v; continue; }
       if(k==='falta'||k==='lo que falta'){ D.falta=v; continue; }
-      if(k==='con emprendimiento sostenible'){ D.mej.es=v; continue; }
-      if(k==='con poder humano'){ D.mej.ph=v; continue; }
-      if(k==='con tech ai maker'){ D.mej.tam=v; continue; }
+      if(k==='nivel general'){ D.general=v; continue; }
+      if(k==='componente'){ comp={nom:v, nivel:'', falta:'', aporta:''}; D.comps.push(comp);
+                            mom=null; fac=null; ses=null; rub=null; continue; }
+      if(k==='nivel hoy'){ if(comp) comp.nivel=v; continue; }
+      if(k==='que falta'){ if(comp) comp.falta=v; continue; }
+      if(k==='que aporta'){ if(comp) comp.aporta=v; continue; }
+      if(k==='con emprendimiento sostenible'){ D.comps.push({nom:'Emprendimiento Sostenible',nivel:'',falta:'',aporta:v}); continue; }
+      if(k==='con poder humano'){ D.comps.push({nom:'Poder Humano',nivel:'',falta:'',aporta:v}); continue; }
+      if(k==='con tech ai maker'){ D.comps.push({nom:'Tech AI Maker',nivel:'',falta:'',aporta:v}); continue; }
       if(k==='trampa'||k==='la trampa'||k==='contraejemplo'){ D.contra=v; continue; }
       if(k==='factor'){
         if(ses){ ses.factor=v; continue; }
@@ -466,6 +490,7 @@ function leer(texto){
       if(k==='unidad'){ D.unidad=v; continue; }
       if(k==='estrategia'){ if(ses) ses.estrategia=v; continue; }
       if(k==='ocurre'||k==='que ocurre'||k==='que pasa'){ if(ses) ses.ocurre=v; continue; }
+      if(k==='es la sesion del reto'||k==='sesion del reto'){ if(ses) ses.marcada=/^s[ií]/i.test(v.trim()); continue; }
       if(k==='producto'||k==='producto de la semana'){ D.producto=v; continue; }
       if(k==='progresion'){ D.progresion=v; continue; }
     }
@@ -588,7 +613,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
   doc.setTextColor(...NEGRO); y+=6;
 
   /* — PARTE 1 · El punto de partida — */
-  if(D.hoy||D.falta||D.contra||D.mej.es||D.mej.ph||D.mej.tam){
+  if(D.hoy||D.falta||D.contra||D.comps.length){
     parte('01','El punto de partida');
     [['Hoy',D.hoy],['Lo que falta',D.falta]].forEach(r=>{
       if(!r[1]) return;
@@ -597,19 +622,46 @@ el('btn-pdf').addEventListener('click', async ()=>{
       doc.text(r[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
       y+=escribir(r[1],9.6,'normal',XT,ANV)+3.4;
     });
-    const mej=[['Emprendimiento Sostenible',D.mej.es,VERDE],
-               ['Poder Humano',D.mej.ph,AZUL],
-               ['Tech AI Maker',D.mej.tam,MORADO]].filter(r=>r[1]);
-    if(mej.length){
-      y+=3; etq('Qué le aporta cada componente del modelo');
-      mej.forEach(r=>{
-        salto(alto(r[1],9.4,W-M-(M+6))+14);
+    if(D.general){
+      y+=1;
+      const h=alto(D.general,10.4,AN-12); salto(h+12);
+      doc.setFillColor(...SUAVE); doc.rect(M,y-4.8,AN,h+8,'F');
+      doc.setFillColor(...VERDE); doc.rect(M,y-4.8,2.4,h+8,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+      doc.text('NIVEL GENERAL DE TU CLASE HOY',M+7,y-0.4); doc.setTextColor(...NEGRO);
+      y+=4.6;
+      y+=escribir(D.general,10.4,'bold',M+7,AN-12)+8;
+    }
+    if(D.comps.length){
+      y+=3; etq('Componente por componente');
+      const NIV=['ausente','inicial','basico','intermedio','avanzado'];
+      D.comps.forEach(c=>{
+        const nn=norm(c.nom);
+        const col = nn.includes('poder') ? AZUL : (nn.includes('tech')||nn.includes('maker')) ? MORADO : VERDE;
+        const filas=[['Qué falta',c.falta],['Qué aporta',c.aporta]].filter(r=>r[1]);
+        let hTot=9; filas.forEach(r=>hTot+=Math.max(alto(r[1],9.2,ANV),4.4)+2.6);
+        salto(hTot+10);
         const yIni=y-3.6;
-        doc.setFont('helvetica','bold'); doc.setFontSize(9.8); doc.setTextColor(...r[2]);
-        doc.text(seguro(r[0]),M+6,y+0.4); doc.setTextColor(...NEGRO); y+=5.8;
-        y+=escribir(r[1],9.4,'normal',M+6,W-M-(M+6))+2.2;
-        doc.setFillColor(...r[2]); doc.rect(M,yIni,2.4,Math.max(y-yIni-2.4,4),'F');
-        y+=5.5;
+        doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...col);
+        doc.text(seguro(c.nom),M+6,y+0.4);
+        if(c.nivel){
+          let iN=NIV.indexOf(norm(c.nivel).split(/[ ,.]/)[0]); if(iN<0) iN=0;
+          const bw=4.6, gap=1.7, tot=4*bw+3*gap, x0=W-M-tot;
+          for(let k=0;k<4;k++){
+            if(k<iN) doc.setFillColor(...col); else doc.setFillColor(224,222,216);
+            doc.rect(x0+k*(bw+gap), y-2.4, bw, 2.8, 'F');
+          }
+          doc.setFont('helvetica','bold'); doc.setFontSize(6.2); doc.setTextColor(...GRIS);
+          doc.text(seguro(c.nivel).toUpperCase(), x0-3, y+0.1, {align:'right'});
+        }
+        doc.setTextColor(...NEGRO); y+=6.4;
+        filas.forEach(r=>{
+          doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+          doc.text(r[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+          y+=Math.max(escribir(r[1],9.2,'normal',XT,ANV),4.4)+2.6;
+        });
+        doc.setFillColor(...col); doc.rect(M,yIni,2.4,Math.max(y-yIni-2.6,4),'F');
+        y+=6;
       });
     }
     if(D.contra){
