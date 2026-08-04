@@ -224,7 +224,8 @@ La tecnología amplifica exponencialmente el poder de emprender de manera sosten
 LAS TRES COMPETENCIAS
 1. EMPRENDIMIENTO SOSTENIBLE. "Construye procesos emprendedores e innovadores para crear o transformar organizaciones y entornos hacia la sostenibilidad, generando valor en contextos diversos e inciertos." Capacidades, nombres exactos: Gestión de la incertidumbre / Asunción de riesgos adaptativos / Orientación a la acción y proactividad / Aprendizaje a partir del error (resiliencia) / Pensamiento sistémico / Capacidad de interpretar la complejidad.
 2. PODER HUMANO. "Capacidad de liderar con conciencia, diseñar entornos de bienestar, actuar con empatía y cooperar para construir soluciones más humanas, inclusivas y sostenibles." Sus capacidades no son rasgos de personalidad ni actitudes difusas: son repertorios conductuales aprendidos y verificables. Capacidades, nombres exactos: Comprensión funcional del comportamiento humano / Liderazgo consciente / Diseño orientado a la persona, accesibilidad y humanización / Comunicación humanizada y construcción de acuerdos.
-3. TECH AI MAKER. "Capacidad para utilizar la tecnología y la inteligencia artificial como amplificadores del potencial humano y del emprendimiento sostenible." La IA no reemplaza el criterio; lo amplifica. ${tam}
+3. TECH AI MAKER. "Capacidad para utilizar la tecnología y la inteligencia artificial como amplificadores del potencial humano y del emprendimiento sostenible. Es ver oportunidades y soluciones que permitan generar abundancia para la humanidad."
+No se reduce a usar inteligencia artificial. Abarca el uso de tecnología en general y, sobre todo, la mentalidad Maker: prototipar, probar, medir, iterar y volver a construir. El Maker no espera tener el manual completo antes de actuar; construye, ajusta y sigue. La IA no reemplaza el criterio; lo amplifica. ${tam}
 
 ESTRATEGIAS INSTITUCIONALES, elige una y usa su nombre exacto: Aprendizaje Basado en Retos / Hands-On Experience / Aprendizaje Basado en Proyectos / Aprendizaje Colaborativo / Aprendizaje Autónomo y Autorregulado / Aprendizaje Adaptativo apoyado por Inteligencia Artificial / Aprendizaje basado en investigación / Aprendizaje mediante simulación y gemelos digitales / Aprendizaje orientado a la transferencia y al impacto.
 
@@ -253,26 +254,26 @@ Gancho: [máximo 30 palabras: la situación con la que abro la sesión y que hac
 ## Parte 1. El punto de partida
 
 Hoy: [qué logra ya la clase que te describí. Una frase, sin adularme y sin condescendencia. Nombra lo que sí funciona.]
-Nivel general: [ausente, inicial, básico, intermedio o avanzado], porque [una frase que lo sustente]
+Nivel general: [no se evidencia, inicial, básico, intermedio o avanzado], porque [una frase que lo sustente]
 
 Componente: Emprendimiento Sostenible
-Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
+Nivel hoy: [no se evidencia, inicial, básico, intermedio o avanzado]
 Qué falta: [qué le falta a mi clase actual, en este componente, para subir un nivel. Una frase concreta.]
 Qué aporta: [qué le agregaría este componente a mi clase. Una frase aplicada a mi tema, no una definición.]
 
 Componente: Poder Humano
-Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
-Qué falta: [una frase. Recuerda que sus capacidades son conductas verificables, no actitudes: si no se ve la diferencia entre un estudiante que lo desarrolló y uno que no, el nivel es ausente.]
+Nivel hoy: [no se evidencia, inicial, básico, intermedio o avanzado]
+Qué falta: [una frase. Recuerda que sus capacidades son conductas verificables, no actitudes: si no se ve la diferencia entre un estudiante que lo desarrolló y uno que no, escribe no se evidencia.]
 Qué aporta: [una frase aplicada a mi tema]
 
 Componente: Tech AI Maker
-Nivel hoy: [ausente, inicial, básico, intermedio o avanzado]
-Qué falta: [una frase. No basta con usar una herramienta: si el estudiante no tiene que juzgar, auditar o decidir sobre lo que la IA produjo, el nivel es ausente.]
+Nivel hoy: [no se evidencia, inicial, básico, intermedio o avanzado]
+Qué falta: [una frase. Antes de poner un nivel, comprueba si en mi clase actual hay algo de esto: uso de alguna tecnología con criterio, prototipado, iteración sobre un resultado propio, o juicio sobre lo que produjo una máquina. Si no hay nada de eso, escribe exactamente no se evidencia. No inventes presencia de este componente solo porque los estudiantes usan computador o buscan en internet.]
 Qué aporta: [una frase aplicada a mi tema]
 
 Trampa: [la versión que parece cumplir el modelo y no lo cumple, con la razón exacta por la que se distingue de lo que me vas a proponer.]
 
-Sé honesto con los niveles. Si un componente está ausente en mi clase actual, dilo. Un diagnóstico complaciente no me sirve para nada.
+Sé honesto con los niveles. Si un componente no se evidencia en mi clase actual, escríbelo tal cual: no se evidencia. Un diagnóstico complaciente no me sirve para nada, y es más útil que me digas que un componente falta por completo a que me pongas un nivel inicial de cortesía.
 
 ## Parte 2. La actividad rediseñada
 
@@ -402,10 +403,14 @@ const norm = t => String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u03
 const pelar = t => String(t).replace(/^#{1,6}\s*/,'').replace(/\*\*/g,'').replace(/\*/g,'')
   .replace(/`/g,'').replace(/^>\s*/,'').replace(/^[-•]\s+/,'').replace(/\t+/g,' · ').trim();
 
-const seguro = t => String(t==null?'':t)
-  .replace(/[\u25A0-\u25FF\u2600-\u27BF\u2190-\u21FF\u2B00-\u2BFF\uFE0F\u2022]/g,'')
-  .replace(/[\u{1F000}-\u{1FAFF}]/gu,'')
-  .replace(/\s{2,}/g,' ').trim();
+// Solo pasan los caracteres que la fuente base del PDF sabe dibujar.
+// Cualquier otro se descarta: si uno solo se cuela, jsPDF desordena la línea entera.
+const PERMITIDOS = new Set([0x2013,0x2014,0x2018,0x2019,0x201A,0x201C,0x201D,0x201E,
+  0x2020,0x2021,0x2026,0x2030,0x2039,0x203A,0x20AC,0x2122,0x0192,0x0160,0x0161,
+  0x0178,0x017D,0x017E,0x02C6,0x02DC]);
+const seguro = t => Array.from(String(t==null?'':t))
+  .filter(ch=>{ const c=ch.codePointAt(0); return c<=0xFF || PERMITIDOS.has(c); })
+  .join('').replace(/\s{2,}/g,' ').trim();
 
 function etiqueta(linea){
   const m = linea.match(/^([^:]{1,40}):\s*(.*)$/);
@@ -634,7 +639,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
     }
     if(D.comps.length){
       y+=3; etq('Componente por componente');
-      const NIV=['ausente','inicial','basico','intermedio','avanzado'];
+      const NIV=['inicial','basico','intermedio','avanzado'];
       D.comps.forEach(c=>{
         const nn=norm(c.nom);
         const col = nn.includes('poder') ? AZUL : (nn.includes('tech')||nn.includes('maker')) ? MORADO : VERDE;
@@ -645,7 +650,9 @@ el('btn-pdf').addEventListener('click', async ()=>{
         doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...col);
         doc.text(seguro(c.nom),M+6,y+0.4);
         if(c.nivel){
-          let iN=NIV.indexOf(norm(c.nivel).split(/[ ,.]/)[0]); if(iN<0) iN=0;
+          const nv=norm(c.nivel);
+          let iN=NIV.findIndex(x=>nv.startsWith(x))+1;
+          if(/no se evidencia|ausente|no aparece/.test(nv)) iN=0;
           const bw=4.6, gap=1.7, tot=4*bw+3*gap, x0=W-M-tot;
           for(let k=0;k<4;k++){
             if(k<iN) doc.setFillColor(...col); else doc.setFillColor(224,222,216);
