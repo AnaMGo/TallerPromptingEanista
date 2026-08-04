@@ -1,0 +1,833 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Diseña tu experiencia — Modelo Educativo EAN 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --negro:#1A1A1A; --verde:#3BAC52; --arena:#FBF9F0;
+  --sup-1:#232323; --sup-2:#2C2C2C; --linea:#3A3A3A;
+  --arena-60:#A6A29A; --arena-80:#D6D2C9;
+  --azul:#4FA6CE; --morado:#A587CE;   /* tintes de #005E85 y #533278 para fondo oscuro */
+  --display:"Space Grotesk",system-ui,sans-serif;
+  --body:"Open Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--negro)}
+body{color:var(--arena);font-family:var(--body);font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:840px;margin:0 auto;padding:40px 32px 96px}
+@media(max-width:600px){.wrap{padding:26px 18px 72px}}
+
+.cab{border-bottom:1px solid var(--linea);padding-bottom:26px;margin-bottom:30px}
+.logo{display:block;width:132px;height:auto;margin:0 0 26px}
+@media(max-width:600px){.logo{width:108px;margin-bottom:20px}}
+.kicker{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--verde);margin-bottom:20px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,6.1vw,3.7rem);line-height:1.03;letter-spacing:-.035em;margin:0 0 18px;white-space:nowrap}
+.bajada{font-family:var(--display);font-weight:500;font-size:clamp(1.05rem,2.6vw,1.3rem);line-height:1.32;margin:0 0 18px}
+.formula{font-family:var(--display);font-weight:500;font-size:14px;color:var(--arena-60);margin:22px 0 0;line-height:2.1}
+.formula .e{color:var(--verde)} .formula .h{color:var(--azul)} .formula .a{color:var(--arena)}
+.formula .t{color:var(--morado);font-size:11.5px;position:relative;top:-7px}
+
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,3.6vw,2rem);line-height:1.1;letter-spacing:-.022em;margin:52px 0 12px}
+p{margin:0 0 15px;color:var(--arena-80)}
+.claim{font-family:var(--display);font-weight:500;font-size:1.02rem;line-height:1.45;color:var(--arena);border-left:3px solid var(--verde);padding-left:16px;margin:22px 0}
+strong{color:var(--arena);font-weight:700}
+
+.pasos{display:flex;flex-wrap:wrap;margin:0 0 32px}
+.pso{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--arena-60);padding:6px 18px 6px 0}
+.pso .b{width:7px;height:7px;background:var(--linea);transition:.3s}
+.pso[data-on="1"]{color:var(--arena)}
+.pso[data-on="1"] .b{background:var(--verde)}
+
+.campo{margin-bottom:18px}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px;color:var(--arena)}
+label span{font-weight:400;letter-spacing:0;text-transform:none;color:var(--arena-60);font-size:12.5px}
+input[type=text],textarea,select{width:100%;background:var(--sup-1);border:1px solid var(--linea);border-radius:2px;
+  padding:12px 14px;color:var(--arena);font-family:var(--body);font-size:15px;resize:vertical}
+input::placeholder,textarea::placeholder{color:#6E6A63}
+input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
+.rejilla{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:600px){.rejilla{grid-template-columns:1fr}}
+
+.btn{font-family:var(--body);font-size:14px;font-weight:700;background:var(--verde);color:var(--negro);
+  border:none;padding:13px 26px;border-radius:2px;cursor:pointer;transition:.16s;text-decoration:none;display:inline-block}
+.btn:hover{background:#48c261}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn-2{background:transparent;color:var(--arena);border:1px solid var(--linea)}
+.btn-2:hover{background:var(--sup-1);border-color:var(--arena-60)}
+.acciones{display:flex;gap:11px;flex-wrap:wrap;margin-top:30px}
+:focus-visible{outline:2px solid var(--verde);outline-offset:3px}
+.sub{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);margin:26px 0 11px}
+.caja{background:var(--sup-1);border:1px solid var(--linea);padding:20px 22px;margin:22px 0}
+
+#instruccion{width:100%;height:230px;background:var(--negro);border:1px solid var(--linea);color:var(--arena-80);
+  font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.55;padding:16px;white-space:pre-wrap}
+.destinos{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.destino{font-size:13px;font-weight:600;padding:9px 16px;border:1px solid var(--linea);color:var(--arena);text-decoration:none;transition:.16s}
+.destino:hover{border-color:var(--verde);color:var(--verde)}
+#pegado{height:280px;font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.55}
+.diag{font-size:12.5px;color:var(--arena-60);margin-top:12px}
+.diag b{color:var(--verde)}
+.nota{font-size:12.5px;color:var(--arena-60);line-height:1.55;margin-top:14px}
+.cierre{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,4vw,2rem);color:var(--verde);margin:40px 0 0}
+.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--verde);
+  color:var(--negro);padding:12px 24px;font-size:13.5px;font-weight:700;transition:.32s;z-index:60}
+.toast.ver{transform:translateX(-50%) translateY(0)}
+.oculto{display:none}
+</style>
+
+<div class="wrap">
+
+<header class="cab">
+  <img class="logo" id="logo" alt="Universidad Ean">
+  <div class="kicker">Modelo Educativo EAN 2026 · El taller de prompting eanista</div>
+  <h1>Diseña tu experiencia</h1>
+  <p class="bajada">Hay profes que enseñan y hay catalizadores que activan lo que el estudiante todavía no sabe que tiene.</p>
+  <p>Ya sabes tu materia. Lo que cambia aquí es el diseño: en lugar de contenido que se reproduce en un examen, armas una situación que el estudiante tiene que resolver sin manual, donde decide, se equivoca y produce algo que puedes mirar. Escribe abajo un tema que vayas a dictar pronto. Sales con la sesión armada, con la semana donde encaja y con un PDF listo para tu plan de clase.</p>
+  <p class="formula">(<span class="e">Emprendimiento Sostenible</span> × <span class="h">Poder Humano</span>)<span class="t">Tech AI Maker</span> = <span class="a">Abundancia para la humanidad</span></p>
+</header>
+
+<div class="pasos">
+  <div class="pso" data-on="1"><span class="b"></span>1 · Tu clase</div>
+  <div class="pso" data-k="ins"><span class="b"></span>2 · Tu instrucción</div>
+  <div class="pso" data-k="dis"><span class="b"></span>3 · Tu diseño</div>
+  <div class="pso" data-k="pdf"><span class="b"></span>4 · Llévatelo</div>
+</div>
+
+<section>
+  <div class="rejilla">
+    <div class="campo"><label for="f-asig">Asignatura</label><input type="text" id="f-asig" placeholder="Costos y presupuestos"></div>
+    <div class="campo"><label for="f-prog">Programa y nivel</label><input type="text" id="f-prog" placeholder="Contaduría Pública, cuarto semestre"></div>
+  </div>
+  <div class="campo"><label for="f-tema">Tema que vas a dictar <span>entre más concreto, mejor resultado</span></label><input type="text" id="f-tema" placeholder="Costeo basado en actividades"></div>
+  <div class="campo"><label for="f-hoy">Cómo lo dictas hoy <span>tal cual, sin arreglarlo</span></label><textarea id="f-hoy" rows="3" placeholder="Explico el método con diapositivas y luego resolvemos dos ejercicios del libro."></textarea></div>
+  <div class="rejilla">
+    <div class="campo"><label for="f-nivel">Nivel</label><select id="f-nivel"><option>Pregrado</option><option>Posgrado</option></select></div>
+    <div class="campo"><label for="f-mod">Modalidad</label><select id="f-mod"><option>Virtual</option><option>Presencial</option><option>Híbrida</option></select></div>
+  </div>
+  <div class="rejilla">
+    <div class="campo"><label for="f-dur">Duración de la sesión</label><select id="f-dur">
+      <option value="120" selected>2 horas</option>
+      <option value="90">1 hora y media</option>
+      <option value="60">1 hora</option>
+      <option value="180">3 horas</option>
+    </select></div>
+    <div class="campo"><label for="f-spw">Sesiones por semana</label><select id="f-spw">
+      <option value="1">Una</option>
+      <option value="2" selected>Dos</option>
+      <option value="3">Tres</option>
+    </select></div>
+  </div>
+  <div class="rejilla">
+    <div class="campo"><label for="f-grupo">Tamaño del grupo</label><input type="text" id="f-grupo" placeholder="35 estudiantes"></div>
+    <div class="campo"><label for="f-fecha">Cuándo lo vas a dictar <span>opcional</span></label><input type="text" id="f-fecha" placeholder="Miércoles 19 de agosto"></div>
+  </div>
+  <div class="acciones"><button class="btn" id="btn-gen">Preparar mi instrucción</button></div>
+</section>
+
+<section id="z-ins" class="oculto">
+  <h2>Tu instrucción</h2>
+  <p>Copia este texto y pégalo en la inteligencia artificial que uses. Sirve en Copilot, ChatGPT, Gemini o Claude, y también en el asistente institucional. Lleva adentro todo el marco del modelo, así que no necesitas explicarle nada más.</p>
+  <textarea id="instruccion" readonly></textarea>
+  <div class="acciones"><button class="btn" id="btn-copiar">Copiar la instrucción</button></div>
+  <div class="sub">Ábrela donde prefieras</div>
+  <div class="destinos">
+    <a class="destino" href="https://copilot.microsoft.com/" target="_blank" rel="noopener">Copilot</a>
+    <a class="destino" href="https://chatgpt.com/" target="_blank" rel="noopener">ChatGPT</a>
+    <a class="destino" href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini</a>
+    <a class="destino" href="https://claude.ai/" target="_blank" rel="noopener">Claude</a>
+  </div>
+  <p class="nota">Si tu institución tiene un asistente propio, úsalo. Funciona igual.</p>
+  <div class="acciones"><button class="btn btn-2" id="btn-ir-dis">Ya la pegué, continuar</button></div>
+</section>
+
+<section id="z-dis" class="oculto">
+  <h2>Tu diseño</h2>
+  <p>Pega aquí, tal cual, lo que te devolvió la inteligencia artificial. Selecciona toda la respuesta, de principio a fin. El taller la maqueta con la identidad de la universidad.</p>
+  <div class="campo"><textarea id="pegado" placeholder="Pega aquí la respuesta completa"></textarea></div>
+  <div class="acciones"><button class="btn" id="btn-pdf">Descargar mi PDF</button></div>
+  <div id="z-pdf"></div>
+  <p class="claim">No evalúas solo lo que sabe. Evalúas lo que hace, lo que resuelve y lo que produce.</p>
+  <p class="cierre">Eanizar empieza contigo.</p>
+</section>
+
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const LOGO="data:image/png;base64,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";
+const el=id=>document.getElementById(id);
+el('logo').src=LOGO;
+function aviso(t){const x=el('toast');x.textContent=t;x.classList.add('ver');setTimeout(()=>x.classList.remove('ver'),2600);}
+function marcar(k){const p=document.querySelector(`.pso[data-k="${k}"]`);if(p)p.dataset.on='1';}
+function perfil(){return{
+  asig:el('f-asig').value.trim(), prog:el('f-prog').value.trim(), tema:el('f-tema').value.trim(),
+  hoy:el('f-hoy').value.trim()||'No lo describió.', nivel:el('f-nivel').value,
+  mod:el('f-mod').value, dur:parseInt(el('f-dur').value,10)||120,
+  spw:parseInt(el('f-spw').value,10)||2,
+  grupo:(g=>g? (/^\d+$/.test(g)? g+' estudiantes' : g) : 'sin especificar')(el('f-grupo').value.trim()),
+  fecha:el('f-fecha').value.trim()
+};}
+
+/* ══════════════ La instrucción ══════════════ */
+function tramos(min){
+  const prop=[.17,.29,.33,.21]; let acc=0; const c=[0];
+  prop.forEach((f,i)=>{ acc+=min*f; c.push(i===3? min : Math.round(acc/5)*5); });
+  return [0,1,2,3].map(i=>c[i]+'–'+c[i+1]);
+}
+function alcance(spw){
+  return spw===1 ? {ses:3, sem:3, txt:'tres semanas, una sesión por semana'}
+       : spw===3 ? {ses:3, sem:1, txt:'una semana, tres sesiones'}
+                 : {ses:4, sem:2, txt:'dos semanas, dos sesiones por semana'};
+}
+function construir(p){
+const T=tramos(p.dur), A=alcance(p.spw);
+const tam = p.nivel==='Posgrado'
+ ? 'Posgrado, mentalidad AI-Driven. Capacidades: Diseño estratégico con IA / Gobernanza y ética algorítmica / Modelamiento y toma de decisiones basadas en evidencia / Innovación escalable / Transformación organizacional / Evaluación de impacto.'
+ : 'Pregrado, mentalidad AI-Ready. Capacidades: Alfabetización en inteligencia artificial / Interacción estratégica con sistemas de IA / Co-creación y prototipado con IA / Pensamiento crítico y evaluación algorítmica / Innovación y emprendimiento potenciado por IA / Ética y responsabilidad en el uso de IA.';
+
+return `Actúa como asistente de diseño pedagógico del Modelo Educativo EAN 2026 de la Universidad EAN, Bogotá. Trabaja solo con el marco que te doy abajo; no incorpores autores ni teorías externas.
+
+LA FÓRMULA
+(Emprendimiento Sostenible × Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad.
+La tecnología amplifica exponencialmente el poder de emprender de manera sostenible y con criterio humano. Si un factor es cero, el resultado es cero.
+
+LAS TRES COMPETENCIAS
+1. EMPRENDIMIENTO SOSTENIBLE. "Construye procesos emprendedores e innovadores para crear o transformar organizaciones y entornos hacia la sostenibilidad, generando valor en contextos diversos e inciertos." Capacidades, nombres exactos: Gestión de la incertidumbre / Asunción de riesgos adaptativos / Orientación a la acción y proactividad / Aprendizaje a partir del error (resiliencia) / Pensamiento sistémico / Capacidad de interpretar la complejidad.
+2. PODER HUMANO. "Capacidad de liderar con conciencia, diseñar entornos de bienestar, actuar con empatía y cooperar para construir soluciones más humanas, inclusivas y sostenibles." Sus capacidades no son rasgos de personalidad ni actitudes difusas: son repertorios conductuales aprendidos y verificables. Capacidades, nombres exactos: Comprensión funcional del comportamiento humano / Liderazgo consciente / Diseño orientado a la persona, accesibilidad y humanización / Comunicación humanizada y construcción de acuerdos.
+3. TECH AI MAKER. "Capacidad para utilizar la tecnología y la inteligencia artificial como amplificadores del potencial humano y del emprendimiento sostenible." La IA no reemplaza el criterio; lo amplifica. ${tam}
+
+ESTRATEGIAS INSTITUCIONALES, elige una y usa su nombre exacto: Aprendizaje Basado en Retos / Hands-On Experience / Aprendizaje Basado en Proyectos / Aprendizaje Colaborativo / Aprendizaje Autónomo y Autorregulado / Aprendizaje Adaptativo apoyado por Inteligencia Artificial / Aprendizaje basado en investigación / Aprendizaje mediante simulación y gemelos digitales / Aprendizaje orientado a la transferencia y al impacto.
+
+NIVELES: inicial, básico, intermedio, avanzado, en las dimensiones Ser, Saber y Saber Hacer.
+
+VOCABULARIO. Reto real: un problema real con una organización real y con consecuencias reales; no es un proyecto de clase. Catalizador: el rol del profe, que no transmite conocimiento sino que activa capacidades. Evaluación auténtica: mide lo que el estudiante hace, resuelve y produce.
+
+MIS DATOS
+Asignatura: ${p.asig}
+Programa y nivel: ${p.prog||'no indicado'}
+Tema que voy a dictar: ${p.tema}
+Cómo lo dicto hoy: ${p.hoy}
+Modalidad: ${p.mod}. Grupo: ${p.grupo}
+Duración real de la sesión: ${p.dur} minutos. Los cuatro momentos deben sumar exactamente ese tiempo.
+Frecuencia: mi materia tiene ${p.spw===1?'una sesión':p.spw===3?'tres sesiones':'dos sesiones'} por semana. La unidad debe tener ${A.ses} sesiones y ocupa ${A.txt}.${p.fecha? '\nSe dicta: '+p.fecha : ''}
+
+FORMATO DE RESPUESTA, OBLIGATORIO
+No uses tablas en ninguna parte de la respuesta. Ni tablas de Markdown, ni columnas, ni celdas. Se pierden al copiar y pegar.
+Respeta exactamente las etiquetas de abajo, incluidos los dos puntos. Escribe cada etiqueta al inicio de su propia línea. No agregues texto antes ni después de la estructura.
+
+Título: [nombre concreto del reto, sin adjetivos]
+Ficha: [nivel] · Domina [factor] · [estrategia institucional]
+Gancho: [máximo 30 palabras: la situación con la que abro la sesión y que hace que el tema importe]
+
+## Parte 1. El punto de partida
+
+Hoy: [qué logra ya la clase que te describí. Una frase, sin adularme y sin condescendencia. Nombra lo que sí funciona.]
+Con Emprendimiento Sostenible: [qué le agregaría este componente a la clase que te describí. Una frase concreta, aplicada a mi tema, no una definición.]
+Con Poder Humano: [lo mismo para este componente. Recuerda que son conductas verificables, no actitudes.]
+Con Tech AI Maker: [lo mismo para este componente. No basta con usar una herramienta: el estudiante tiene que juzgar, auditar o decidir sobre lo que la IA produjo.]
+Trampa: [la versión que parece cumplir el modelo y no lo cumple, con la razón exacta por la que se distingue de lo que me vas a proponer.]
+
+## Parte 2. La actividad rediseñada
+
+### La evidencia
+
+Evidencia: [qué producen y qué miro para juzgarlo, una frase concreta]
+Criterio: [primero, observable]
+Criterio: [segundo, observable]
+Criterio: [tercero, observable]
+
+### Las cinco preguntas
+
+Competencia: [≤22 palabras]
+Experiencia: [≤22 palabras]
+Desempeño: [≤22 palabras]
+Transferencia: [≤22 palabras]
+Abundancia: [≤22 palabras]
+
+### La fórmula, verificada
+
+Factor: Emprendimiento Sostenible
+Capacidad: [nombre exacto]
+Dónde ocurre: [momento de la secuencia]
+Cómo: [≤30 palabras]
+Si se retira: [≤25 palabras]
+
+Factor: Poder Humano
+Capacidad: [nombre exacto]
+Dónde ocurre: [...]
+Cómo: [...]
+Si se retira: [...]
+
+Factor: Tech AI Maker
+Capacidad: [nombre exacto]
+Dónde ocurre: [...]
+Cómo: [...]
+Si se retira: [...]
+
+Exponente: [por qué Tech AI Maker actúa como exponente y no como un tercer sumando, ≤40 palabras]
+Ser: [≤22 palabras]
+Saber: [≤22 palabras]
+Saber Hacer: [≤22 palabras]
+Abundancia en estudiantes: [≤22 palabras]
+Abundancia en organizaciones: [≤22 palabras]
+Abundancia en el entorno: [≤22 palabras]
+
+## Parte 3. Cómo la llevas a cabo
+
+### Antes de la clase
+
+Prepara: [algo concreto que debo tener listo antes de entrar al aula]
+Prepara: [segundo]
+Prepara: [tercero]
+Riesgo: [lo que más probablemente salga mal en esta sesión y cómo lo resuelvo en el momento, en una frase]
+Riesgo: [un segundo riesgo con su salida]
+
+### La sesión
+
+${T[0]} · [nombre del momento]
+Tú: [qué hago yo, una frase]
+Ellos: [qué hacen ellos, una frase]
+
+[Repite ese bloque de tres líneas para los cuatro momentos, con estos rangos exactos: ${T[0]}, ${T[1]}, ${T[2]} y ${T[3]}. No los cambies: suman los ${p.dur} minutos reales de mi clase.]
+
+### La rúbrica
+
+Rúbrica: [repite aquí el primer criterio, tal cual]
+Inicial: [qué se ve en este nivel, máximo 18 palabras, describiendo conducta observable]
+Básico: [máximo 18 palabras]
+Intermedio: [máximo 18 palabras]
+Avanzado: [máximo 18 palabras]
+
+Rúbrica: [repite el segundo criterio]
+Inicial: [...]
+Básico: [...]
+Intermedio: [...]
+Avanzado: [...]
+
+Rúbrica: [repite el tercer criterio]
+Inicial: [...]
+Básico: [...]
+Intermedio: [...]
+Avanzado: [...]
+
+### La unidad
+
+Unidad: [nombre de la unidad]
+
+Sesión 1 · [foco corto]
+Factor: [el que domina esa sesión]
+Estrategia: [nombre exacto]
+Ocurre: [una frase concreta]
+
+[Repite ese bloque exactamente ${A.ses} veces, una por sesión, cada una con un factor dominante distinto. Marca con un rombo antes del foco la sesión que corresponde al reto que ya diseñaste. Recuerda que son ${A.txt}: si hay más de una semana, cuida que cada sesión cierre algo utilizable, porque entre una y otra pasan siete días.]
+
+Producto: [la pieza de portafolio que entregan al cerrar la unidad]
+Progresión: [cómo sube la exigencia entre la primera y la última sesión]
+
+REGLAS INNEGOCIABLES
+Cabe en una sesión real y la puedo dictar la semana entrante con lo que ya tengo. Queda anclada al tema "${p.tema}", nada genérico. Un factor domina, otro sostiene, el tercero amplifica; nunca en partes iguales. La evidencia se mira, no se infiere: "demuestran comprensión del concepto" no sirve. Cada nivel de la rúbrica describe lo que se ve, no lo que el estudiante siente o entiende, y la diferencia entre un nivel y el siguiente tiene que ser algo que yo pueda señalar con el dedo sobre su entrega. Si un factor queda débil, dilo en vez de inventar dónde aparece.
+Poder Humano no es contenido sobre lo humano: si no se ve la diferencia entre un estudiante que lo desarrolló y uno que no, no está. Tech AI Maker no es usar una herramienta: aparece cuando el estudiante tiene que juzgar, auditar o decidir sobre lo que la IA produjo.
+
+CÓMO ESCRIBES
+Segunda persona, tuteándome. Frases cortas. Verbos de acción. Directo, sin adornos. Sin signos de exclamación y sin felicitarme. Nunca uses: excelencia, innovador, holístico, sinergia, clase mundial, líderes del futuro, empoderar, viaje, vanguardia.`;
+}
+
+el('btn-gen').addEventListener('click',()=>{
+  const p=perfil();
+  if(!p.asig||!p.tema){aviso('Falta la asignatura o el tema.');return;}
+  window.P=p;
+  el('instruccion').value=construir(p);
+  el('z-ins').classList.remove('oculto');
+  marcar('ins'); el('z-ins').scrollIntoView({behavior:'smooth'});
+});
+el('btn-copiar').addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText(el('instruccion').value);}
+  catch{el('instruccion').select();document.execCommand('copy');}
+  aviso('Copiado. Pégalo en tu IA.');
+});
+el('btn-ir-dis').addEventListener('click',()=>{
+  el('z-dis').classList.remove('oculto'); marcar('dis');
+  el('z-dis').scrollIntoView({behavior:'smooth'}); el('pegado').focus();
+});
+
+/* ══════════════ Lectura del diseño ══════════════ */
+const norm = t => String(t).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+const pelar = t => String(t).replace(/^#{1,6}\s*/,'').replace(/\*\*/g,'').replace(/\*/g,'')
+  .replace(/`/g,'').replace(/^>\s*/,'').replace(/^[-•]\s+/,'').replace(/\t+/g,' · ').trim();
+
+const seguro = t => String(t==null?'':t)
+  .replace(/[\u25A0-\u25FF\u2700-\u27BF\u2190-\u21FF\u2B00-\u2BFF]/g,'')
+  .replace(/[\u{1F000}-\u{1FAFF}]/gu,'')
+  .replace(/\s{2,}/g,' ').trim();
+
+function etiqueta(linea){
+  const m = linea.match(/^([^:]{1,40}):\s*(.*)$/);
+  if(!m) return null;
+  return { k: norm(m[1]), v: m[2].trim() };
+}
+
+function leer(texto){
+  const D = { titulo:'', ficha:'', gancho:'', hoy:'', falta:'', mej:{}, prepara:[], riesgos:[], rubricas:[],
+              momentos:[], evidencia:'', criterios:[],
+              p5:{}, contra:'', factores:[], exponente:'', ser:'', saber:'', saberhacer:'',
+              ab:{}, unidad:'', sesiones:[], producto:'', progresion:'', libre:[] };
+  let mom=null, fac=null, ses=null, rub=null;
+
+  for(const bruta of texto.split('\n')){
+    const l = pelar(bruta);
+    if(!l) continue;
+
+    // Cabecera de momento: 0–15 · Nombre
+    const mm = l.match(/^(\d{1,3}\s*[–—-]\s*\d{1,3})\s*(?:min(?:utos)?)?\s*[·|:\-–—]\s*(.+)$/i);
+    if(mm){ mom={min:mm[1].replace(/\s/g,'').replace(/[-—]/g,'–'), nombre:mm[2], tu:'', ellos:''};
+            D.momentos.push(mom); fac=null; ses=null; continue; }
+
+    // Cabecera de sesión: Sesión 1 · Foco
+    const sm = l.match(/^sesi[oó]n\s*(\d+)\s*[·|:\-–—]\s*(.+)$/i);
+    if(sm){ const f0=sm[2];
+            ses={n:sm[1], foco:f0.replace(/[◆◇■●▪]/g,'').trim(), marcada:/[◆◇■●▪]/.test(f0),
+                 factor:'', estrategia:'', ocurre:''};
+            D.sesiones.push(ses); mom=null; fac=null; continue; }
+
+    const e = etiqueta(l);
+    if(e){
+      const k=e.k, v=e.v;
+      if(k==='titulo'){ D.titulo=v; continue; }
+      if(k==='ficha'){ D.ficha=v; continue; }
+      if(k==='gancho'){ D.gancho=v; continue; }
+      if(k==='tu'||k==='tú'||k==='yo'||k==='docente'||k==='profe'){ if(mom) mom.tu=v; continue; }
+      if(k==='ellos'||k==='estudiantes'){ if(mom) mom.ellos=v; continue; }
+      if(k==='evidencia'){ D.evidencia=v; continue; }
+      if(k==='criterio'){ D.criterios.push(v); continue; }
+      if(k==='prepara'){ D.prepara.push(v); continue; }
+      if(k==='riesgo'){ D.riesgos.push(v); continue; }
+      if(k==='rubrica'){ rub={nombre:v, inicial:'', basico:'', intermedio:'', avanzado:''};
+                         D.rubricas.push(rub); mom=null; fac=null; ses=null; continue; }
+      if(k==='inicial'){ if(rub) rub.inicial=v; continue; }
+      if(k==='basico'){ if(rub) rub.basico=v; continue; }
+      if(k==='intermedio'){ if(rub) rub.intermedio=v; continue; }
+      if(k==='avanzado'){ if(rub) rub.avanzado=v; continue; }
+      if(k==='competencia'){ D.p5.competencia=v; continue; }
+      if(k==='experiencia'){ D.p5.experiencia=v; continue; }
+      if(k==='desempeno'){ D.p5.desempeno=v; continue; }
+      if(k==='transferencia'){ D.p5.transferencia=v; continue; }
+      if(k==='abundancia'){ D.p5.abundancia=v; continue; }
+      if(k==='hoy'){ D.hoy=v; continue; }
+      if(k==='falta'||k==='lo que falta'){ D.falta=v; continue; }
+      if(k==='con emprendimiento sostenible'){ D.mej.es=v; continue; }
+      if(k==='con poder humano'){ D.mej.ph=v; continue; }
+      if(k==='con tech ai maker'){ D.mej.tam=v; continue; }
+      if(k==='trampa'||k==='la trampa'||k==='contraejemplo'){ D.contra=v; continue; }
+      if(k==='factor'){
+        if(ses){ ses.factor=v; continue; }
+        fac={nom:v, cap:'', donde:'', como:'', sin:''}; D.factores.push(fac); mom=null; continue;
+      }
+      if(k==='capacidad'){ if(fac) fac.cap=v; continue; }
+      if(k==='donde ocurre'||k==='donde'){ if(fac) fac.donde=v; continue; }
+      if(k==='como'){ if(fac) fac.como=v; continue; }
+      if(k==='si se retira'||k==='si se retira este factor'){ if(fac) fac.sin=v; continue; }
+      if(k==='exponente'||k==='por que es exponente'){ D.exponente=v; fac=null; continue; }
+      if(k==='ser'){ D.ser=v; continue; }
+      if(k==='saber'){ D.saber=v; continue; }
+      if(k==='saber hacer'){ D.saberhacer=v; continue; }
+      if(k==='abundancia en estudiantes'){ D.ab.e=v; continue; }
+      if(k==='abundancia en organizaciones'){ D.ab.o=v; continue; }
+      if(k==='abundancia en el entorno'||k==='abundancia en entorno'){ D.ab.t=v; continue; }
+      if(k==='unidad'){ D.unidad=v; continue; }
+      if(k==='estrategia'){ if(ses) ses.estrategia=v; continue; }
+      if(k==='ocurre'||k==='que ocurre'||k==='que pasa'){ if(ses) ses.ocurre=v; continue; }
+      if(k==='producto'||k==='producto de la semana'){ D.producto=v; continue; }
+      if(k==='progresion'){ D.progresion=v; continue; }
+    }
+
+    // Encabezados conocidos: se ignoran, ya damos nosotros la maqueta
+    const n=norm(l);
+    if(/^(parte\s*\d|la sesion|la evidencia|las cinco preguntas|lo que parece|la formula|la semana|la unidad|el punto de partida|antes de la clase|la rubrica|la actividad redise|como la llevas)/.test(n)) { mom=null; fac=null; ses=null; continue; }
+
+    if(!D.titulo && l.length<90 && D.momentos.length===0){ D.titulo=l; continue; }
+    D.libre.push(l);
+  }
+  return D;
+}
+
+/* ══════════════ PDF ══════════════ */
+const CDNS=[
+ 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
+ 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js',
+ 'https://unpkg.com/jspdf@2.5.1/dist/jspdf.umd.min.js'
+];
+function unScript(src){ return new Promise(res=>{ const t=document.createElement('script');
+  t.src=src; t.onload=()=>res(true); t.onerror=()=>res(false); document.head.appendChild(t); }); }
+async function cargarJsPDF(){ if(window.jspdf) return true;
+  for(const u of CDNS){ if(await unScript(u) && window.jspdf) return true; } return false; }
+
+el('btn-pdf').addEventListener('click', async ()=>{
+  const crudo=el('pegado').value.trim();
+  if(!crudo){aviso('Pega primero la respuesta de tu IA.');return;}
+  const b=el('btn-pdf'); b.disabled=true; b.textContent='Maquetando…';
+  if(!await cargarJsPDF()){b.disabled=false;b.textContent='Descargar mi PDF';aviso('No se pudo cargar el generador');return;}
+
+  try{
+  const D=leer(crudo);
+  const p=window.P||perfil();
+  const {jsPDF}=window.jspdf;
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const W=210,H=297,M=18,AN=W-2*M;
+  const NEGRO=[26,26,26], VERDE=[59,172,82], GRIS=[112,112,112], SUAVE=[246,245,240],
+        LIN=[214,212,206], ARENA=[251,249,240], AZUL=[0,94,133], MORADO=[83,50,120], ROJO=[176,74,53];
+  let y=0, pag=0;
+  const XC=M+27, XL=M+37, XT=M+40, ANN=W-M-(M+27), ANT=W-M-(M+40), ANV=W-M-(M+40);
+
+  const cabecera=()=>{
+    pag++;
+    doc.setFillColor(...NEGRO); doc.rect(0,0,W,16,'F');
+    doc.setFillColor(...VERDE); doc.rect(0,16,W,1.1,'F');
+    try{ doc.addImage(LOGO,'PNG',M,4.6,15.6,7.6); }catch(e){}
+    doc.setTextColor(...ARENA); doc.setFont('helvetica','bold'); doc.setFontSize(8);
+    doc.text('MODELO EDUCATIVO EAN 2026',M+21,10);
+    doc.setFont('helvetica','normal'); doc.setTextColor(...VERDE); doc.setFontSize(8);
+    doc.text('Diseña tu experiencia',W-M,10,{align:'right'});
+    doc.setTextColor(...NEGRO); y=30;
+  };
+  const pie=()=>{
+    doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...GRIS);
+    doc.text('(Emprendimiento Sostenible × Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad',M,H-10);
+    doc.text(String(pag).padStart(2,'0'),W-M,H-10,{align:'right'});
+    doc.setTextColor(...NEGRO);
+  };
+  const salto=h=>{ if(y+h>H-19){ pie(); doc.addPage(); cabecera(); } };
+  const alto=(t,size,anchoDisp)=>doc.splitTextToSize(seguro(t)||' ',anchoDisp).length*(size*0.46)+1;
+  const escribir=(t,size,style,x,ancho,color,interlineado)=>{
+    if(t===undefined||t===null||t==='') return 0;
+    doc.setFont('helvetica',style||'normal'); doc.setFontSize(size);
+    doc.setTextColor(...(color||NEGRO));
+    const li=doc.splitTextToSize(seguro(t),ancho); const paso=size*0.46+(interlineado||0.9);
+    li.forEach((l,i)=>doc.text(l,x,y+i*paso));
+    doc.setTextColor(...NEGRO);
+    return li.length*paso;
+  };
+  const parrafo=(t,size,style,indent,color)=>{
+    if(!t) return;
+    doc.setFont('helvetica',style||'normal'); doc.setFontSize(size||9.5);
+    doc.setTextColor(...(color||NEGRO));
+    doc.splitTextToSize(seguro(t),AN-(indent||0)).forEach(l=>{ salto(7); doc.text(l,M+(indent||0),y); y+=(size||9.5)*0.46+1.4; });
+    doc.setTextColor(...NEGRO); y+=2;
+  };
+  const h2=t=>{ salto(44); y+=10; doc.setDrawColor(...VERDE); doc.setLineWidth(1.5); doc.line(M,y-4.6,M+10,y-4.6);
+    doc.setFont('helvetica','bold'); doc.setFontSize(13.5); doc.setTextColor(...NEGRO);
+    doc.text(seguro(t),M,y+2.6); y+=12.5; };
+  const parte=(num,titulo)=>{
+    if(y>40){ pie(); doc.addPage(); cabecera(); }
+    y+=2;
+    doc.setFillColor(...NEGRO); doc.rect(M,y-5,AN,23,'F');
+    doc.setFillColor(...VERDE); doc.rect(M,y-5,3,23,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(6.8); doc.setTextColor(...VERDE);
+    doc.text('PARTE '+num,M+10,y+1.8);
+    doc.setFontSize(15); doc.setTextColor(...ARENA);
+    doc.text(seguro(titulo),M+10,y+11.8);
+    doc.setTextColor(...NEGRO); y+=27;
+  };
+  const etq=t=>{ salto(19); doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...VERDE);
+    doc.text(seguro(t).toUpperCase(),M,y); doc.setTextColor(...NEGRO); y+=5; };
+
+  /* — Portada — */
+  cabecera(); y=36;
+  doc.setFont('helvetica','bold'); doc.setFontSize(23);
+  const tit=doc.splitTextToSize(seguro(D.titulo)||('Reto de '+(p.tema||'clase')),AN);
+  tit.forEach((l,i)=>doc.text(l,M,y+i*10)); y+=tit.length*10+3;
+
+  if(D.ficha){
+    const txt=seguro(D.ficha).toUpperCase();
+    let fs=7.6; doc.setFont('helvetica','bold'); doc.setFontSize(fs);
+    while(doc.getTextWidth(txt)>AN-11 && fs>5.9){ fs-=0.2; doc.setFontSize(fs); }
+    const li=doc.splitTextToSize(txt,AN-11);
+    const paso=fs*0.5, hCaja=li.length*paso+5.4;
+    let w=0; li.forEach(l=>w=Math.max(w,doc.getTextWidth(l)));
+    doc.setFillColor(...VERDE); doc.rect(M,y-4.2,Math.min(w+11,AN),hCaja,'F');
+    doc.setTextColor(...NEGRO);
+    li.forEach((l,i)=>doc.text(l,M+5.5,y+0.4+i*paso));
+    doc.setTextColor(...NEGRO); y+=hCaja+7;
+  }
+  if(D.gancho){ y+=1; parrafo(D.gancho,11,'italic',0,GRIS); y+=1; }
+
+  doc.setDrawColor(...LIN); doc.setLineWidth(.3); doc.line(M,y,W-M,y); y+=6;
+  doc.setFont('helvetica','normal'); doc.setFontSize(8.4); doc.setTextColor(...GRIS);
+  doc.text([p.asig,p.prog,p.tema,p.mod,(p.dur?p.dur+' min':''),
+            (p.spw?(p.spw===1?'1 sesión/semana':p.spw+' sesiones/semana'):''),
+            p.grupo,p.fecha].filter(Boolean).join('  ·  '),M,y);
+  doc.setTextColor(...NEGRO); y+=6;
+
+  /* — PARTE 1 · El punto de partida — */
+  if(D.hoy||D.falta||D.contra||D.mej.es||D.mej.ph||D.mej.tam){
+    parte('01','El punto de partida');
+    [['Hoy',D.hoy],['Lo que falta',D.falta]].forEach(r=>{
+      if(!r[1]) return;
+      const h=Math.max(alto(r[1],9.6,ANV),4.6); salto(h+8);
+      doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+      doc.text(r[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+      y+=escribir(r[1],9.6,'normal',XT,ANV)+3.4;
+    });
+    const mej=[['Emprendimiento Sostenible',D.mej.es,VERDE],
+               ['Poder Humano',D.mej.ph,AZUL],
+               ['Tech AI Maker',D.mej.tam,MORADO]].filter(r=>r[1]);
+    if(mej.length){
+      y+=3; etq('Qué le aporta cada componente del modelo');
+      mej.forEach(r=>{
+        salto(alto(r[1],9.4,W-M-(M+6))+14);
+        const yIni=y-3.6;
+        doc.setFont('helvetica','bold'); doc.setFontSize(9.8); doc.setTextColor(...r[2]);
+        doc.text(seguro(r[0]),M+6,y+0.4); doc.setTextColor(...NEGRO); y+=5.8;
+        y+=escribir(r[1],9.4,'normal',M+6,W-M-(M+6))+2.2;
+        doc.setFillColor(...r[2]); doc.rect(M,yIni,2.4,Math.max(y-yIni-2.4,4),'F');
+        y+=5.5;
+      });
+    }
+    if(D.contra){
+      y+=2;
+      const h=alto(D.contra,9.2,ANV); salto(h+11);
+      doc.setFillColor(252,246,244); doc.rect(M,y-4.6,AN,h+7.4,'F');
+      doc.setFillColor(...ROJO); doc.rect(M,y-4.6,2,h+7.4,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...ROJO);
+      doc.text('LA TRAMPA',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+      y+=escribir(D.contra,9.2,'normal',XT,ANV)+8;
+    }
+  }
+
+  if(D.evidencia||D.criterios.length||D.p5.competencia||D.factores.length) parte('02','La actividad rediseñada');
+
+  /* — La evidencia — */
+  if(D.evidencia||D.criterios.length){
+    h2('La evidencia');
+    if(D.evidencia) parrafo(D.evidencia,10);
+    if(D.criterios.length){
+      etq('Criterios observables');
+      D.criterios.forEach(c=>{
+        const h=alto(c,9,AN-7); salto(h+3);
+        doc.setFillColor(...VERDE); doc.rect(M,y-1.7,1.8,1.8,'F');
+        y+=escribir(c,9,'normal',M+6,AN-7)+2.4;
+      });
+      y+=2;
+    }
+  }
+
+  /* — Las cinco preguntas — */
+  const P5=[['¿Qué competencia institucional y disciplinar busca desarrollar?',D.p5.competencia],
+            ['¿Qué experiencia permitirá movilizar el aprendizaje?',D.p5.experiencia],
+            ['¿Cómo se evidenciará el desempeño del estudiante?',D.p5.desempeno],
+            ['¿Qué nivel de transferencia e impacto se espera alcanzar?',D.p5.transferencia],
+            ['¿Cómo contribuye a generar abundancia para la humanidad?',D.p5.abundancia]].filter(q=>q[1]);
+  if(P5.length){
+    h2('Las cinco preguntas del modelo');
+    P5.forEach(q=>{
+      const h1=alto(q[0],8.6,AN-6), h2a=alto(q[1],9.4,AN-6);
+      salto(h1+h2a+7);
+      doc.setFillColor(...SUAVE); doc.rect(M,y-4,AN,h1+h2a+5.5,'F');
+      doc.setFillColor(...VERDE); doc.rect(M,y-4,1.6,h1+h2a+5.5,'F');
+      y+=escribir(q[0],8.6,'bold',M+6,AN-10,GRIS)+0.6;
+      y+=escribir(q[1],9.4,'normal',M+6,AN-10)+5.5;
+    });
+  }
+
+  /* — La fórmula, verificada — */
+  if(D.factores.length){
+    h2('La fórmula, verificada');
+    parrafo('Cada factor con la capacidad institucional que le corresponde, el momento exacto donde ocurre y lo que quedaría del reto si ese factor se retirara.',9,'normal',0,GRIS);
+    y+=1;
+    D.factores.forEach(f=>{
+      const n=norm(f.nom);
+      const col = n.includes('poder') ? AZUL : (n.includes('tech')||n.includes('maker')) ? MORADO : VERDE;
+      const rol = (n.includes('tech')||n.includes('maker')) ? 'EXPONENTE' : 'FACTOR';
+      const filas=[['Capacidad',f.cap],['Dónde ocurre',f.donde],['Cómo',f.como]].filter(r=>r[1]);
+      let hTot=10; filas.forEach(r=>hTot+=Math.max(alto(r[1],9,ANV),4.4)+2.6);
+      const hSin=f.sin?alto(f.sin,8.8,ANV)+9:0;
+      salto(hTot+hSin+10);
+      const yIni=y-5;
+      doc.setFont('helvetica','bold'); doc.setFontSize(11.5); doc.setTextColor(...col);
+      doc.text(seguro(f.nom),M+6,y+0.5);
+      doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+      doc.text(rol,W-M,y+0.5,{align:'right'});
+      doc.setTextColor(...NEGRO); y+=7.5;
+      filas.forEach(r=>{
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(r[0].toUpperCase(),XL,y,{align:'right'});
+        doc.setTextColor(...NEGRO);
+        y+=Math.max(escribir(r[1],9,'normal',XT,ANV),4.4)+2.6;
+      });
+      if(f.sin){
+        const h=alto(f.sin,8.8,ANV);
+        doc.setFillColor(...SUAVE); doc.rect(M+6,y-3.8,AN-6,h+6,'F');
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text('SI SE RETIRA',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(f.sin,8.8,'normal',XT,ANV)+7;
+      }
+      doc.setFillColor(...col); doc.rect(M,yIni,2.6,y-yIni-2,'F');
+      y+=6;
+    });
+  }
+  if(D.exponente){ etq('Por qué actúa como exponente'); parrafo(D.exponente,9.6); }
+
+  const trio=(titulo,items)=>{
+    const its=items.filter(i=>i[1]); if(!its.length) return;
+    const GUT=7, PASO=4.2, PAD=5.5;
+    const w=(AN-GUT*(its.length-1))/its.length;
+    doc.setFont('helvetica','normal'); doc.setFontSize(8.8);
+    let nMax=1;
+    const li=its.map(i=>{ const L=doc.splitTextToSize(seguro(i[1]),w-PAD*2); nMax=Math.max(nMax,L.length); return L; });
+    const hCaja=nMax*PASO+12.4;
+    salto(hCaja+14);
+    etq(titulo);
+    const y0=y;
+    its.forEach((i,k)=>{
+      const x=M+k*(w+GUT);
+      doc.setFillColor(...SUAVE); doc.rect(x,y0-3.4,w,hCaja,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...VERDE);
+      doc.text(seguro(i[0]).toUpperCase(),x+PAD,y0+1.4); doc.setTextColor(...NEGRO);
+      doc.setFont('helvetica','normal'); doc.setFontSize(8.8);
+      li[k].forEach((l,j)=>doc.text(l,x+PAD,y0+7.6+j*PASO));
+    });
+    y=y0+hCaja+6.5;
+  };
+  if((D.ser||D.saber||D.saberhacer) && (D.ab.e||D.ab.o||D.ab.t)) salto(78);
+  trio('Ser, Saber y Saber Hacer',[['Ser',D.ser],['Saber',D.saber],['Saber Hacer',D.saberhacer]]);
+  trio('Abundancia para la humanidad',[['Estudiantes',D.ab.e],['Organizaciones',D.ab.o],['Entorno',D.ab.t]]);
+
+  if(D.prepara.length||D.riesgos.length||D.momentos.length||D.rubricas.length||D.sesiones.length) parte('03','Cómo la llevas a cabo');
+
+  /* — Antes de la clase — */
+  if(D.prepara.length||D.riesgos.length){
+    h2('Antes de la clase');
+    if(D.prepara.length){
+      etq('Lo que llevas listo');
+      D.prepara.forEach(c=>{ salto(alto(c,9.4,AN-7)+4);
+        doc.setFillColor(...VERDE); doc.rect(M,y-1.7,1.8,1.8,'F');
+        y+=escribir(c,9.4,'normal',M+6,AN-7)+2.6; });
+      y+=3;
+    }
+    if(D.riesgos.length){
+      etq('Lo que puede salir mal');
+      D.riesgos.forEach(c=>{ const h=alto(c,9.2,ANV); salto(h+9);
+        doc.setFillColor(...SUAVE); doc.rect(M,y-3.6,AN,h+5.8,'F');
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text('RIESGO',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(c,9.2,'normal',XT,ANV)+8; });
+    }
+  }
+
+  /* — La sesión — */
+  if(D.momentos.length){
+    h2('La sesión');
+    D.momentos.forEach(m=>{
+      const hNom=alto(m.nombre,10.5,ANN);
+      const hTu=m.tu?alto(m.tu,9,ANT):0, hEl=m.ellos?alto(m.ellos,9,ANT):0;
+      salto(hNom+hTu+hEl+15);
+      doc.setDrawColor(...LIN); doc.setLineWidth(.2); doc.line(M,y-4.4,W-M,y-4.4);
+      const yIni=y-2.6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8.4); doc.setTextColor(...VERDE);
+      doc.text(seguro(m.min),M+6,y+0.6); doc.setTextColor(...NEGRO);
+      y+=escribir(m.nombre,10.5,'bold',XC,ANN)+2.2;
+      [['TÚ',m.tu],['ELLOS',m.ellos]].forEach(r=>{
+        if(!r[1]) return;
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(r[0],XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(r[1],9,'normal',XT,ANT)+1.6;
+      });
+      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
+      y+=6;
+    });
+  }
+
+  /* — La rúbrica — */
+  if(D.rubricas.length){
+    h2('La rúbrica');
+    parrafo('Cuatro niveles por criterio. La diferencia entre uno y el siguiente es algo que puedes señalar con el dedo sobre la entrega.',9,'normal',0,GRIS);
+    y+=1;
+    D.rubricas.forEach(r=>{
+      const niv=[['Inicial',r.inicial],['Básico',r.basico],['Intermedio',r.intermedio],['Avanzado',r.avanzado]].filter(x=>x[1]);
+      let hTot=9; niv.forEach(x=>hTot+=Math.max(alto(x[1],8.8,ANV),4.2)+2.4);
+      salto(hTot+9);
+      const yIni=y-2.6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...NEGRO);
+      y+=escribir(r.nombre,10,'bold',M+6,W-M-(M+6))+2.6;
+      niv.forEach((x,i)=>{
+        const h=Math.max(alto(x[1],8.8,ANV),4.2);
+        if(i%2===0){ doc.setFillColor(...SUAVE); doc.rect(M+6,y-3.4,AN-6,h+3.4,'F'); }
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(x[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(x[1],8.8,'normal',XT,ANV)+2.4;
+      });
+      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
+      y+=6.5;
+    });
+  }
+
+  /* — La semana — */
+  if(D.sesiones.length||D.unidad){
+    h2('La unidad'+(D.unidad?': '+D.unidad:''));
+    const A=alcance(p.spw||2);
+    doc.setFont('helvetica','bold'); doc.setFontSize(6.8); doc.setTextColor(...GRIS);
+    doc.text((D.sesiones.length||A.ses)+' SESIONES  ·  '+A.txt.toUpperCase(),M,y-6);
+    doc.setTextColor(...NEGRO); y+=1;
+    D.sesiones.forEach(s=>{
+      const meta=[s.factor,s.estrategia].filter(Boolean).join('   ·   ');
+      const anchoF=ANN-(s.marcada?26:0);
+      const hF=alto(s.foco,10.5,anchoF), hM=meta?4.8:0, hO=s.ocurre?alto(s.ocurre,9,ANN):0;
+      salto(hF+hM+hO+14);
+      doc.setDrawColor(...LIN); doc.setLineWidth(.2); doc.line(M,y-4.4,W-M,y-4.4);
+      const yIni=y-2.6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8.4); doc.setTextColor(...VERDE);
+      doc.text('S'+s.n,M+6,y+0.6);
+      if(s.marcada){ doc.setFontSize(6.2); doc.text('ESTA ES TU SESIÓN',W-M,y+0.3,{align:'right'}); }
+      doc.setTextColor(...NEGRO);
+      y+=escribir(s.foco,10.5,'bold',XC,anchoF)+1.8;
+      if(meta){ doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(seguro(meta).toUpperCase(),XC,y); doc.setTextColor(...NEGRO); y+=4.8; }
+      if(s.ocurre) y+=escribir(s.ocurre,9,'normal',XC,ANN)+1.4;
+      if(s.marcada){ doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F'); }
+      y+=6;
+    });
+    if(D.producto){ etq('Pieza de portafolio'); parrafo(D.producto,9.6); }
+    if(D.progresion){ etq('Progresión'); parrafo(D.progresion,9.6); }
+  }
+
+  /* — Sobrante no reconocido — */
+  if(D.libre.length && !D.momentos.length && !D.factores.length){
+    h2('Tu diseño'); D.libre.forEach(l=>parrafo(l,9.5));
+  }
+
+  /* — Cierre — */
+  salto(28); y+=8;
+  doc.setFillColor(...NEGRO); doc.rect(M,y-4,AN,17,'F');
+  try{ doc.addImage(LOGO,'PNG',W-M-19,y+0.6,15.6,7.6); }catch(e){}
+  doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...VERDE);
+  doc.text('Eanizar empieza contigo.',M+6,y+6.5);
+  doc.setTextColor(...NEGRO);
+  pie();
+
+  const nom=(p.tema||'reto').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40);
+  const archivo='reto-'+(nom||'ean')+'.pdf';
+  const url=URL.createObjectURL(doc.output('blob'));
+
+  const leidos=[D.momentos.length+' momentos', D.factores.length+' factores',
+                D.rubricas.length+' rúbricas', D.sesiones.length+' sesiones'].join(' · ');
+  el('z-pdf').innerHTML=
+    '<div class="caja"><div class="sub" style="margin:0 0 9px">Tu PDF está listo</div>'+
+    '<p style="margin:0 0 6px;font-size:14px">Si la descarga no arrancó sola, usa uno de estos dos botones.</p>'+
+    '<div class="acciones" style="margin:14px 0 0">'+
+    '<a class="btn" href="'+url+'" download="'+archivo+'">Guardar el archivo</a>'+
+    '<a class="btn btn-2" href="'+url+'" target="_blank" rel="noopener">Abrirlo en otra pestaña</a>'+
+    '</div><p class="diag">Reconocí <b>'+leidos+'</b>. Si algún número está en cero, la IA no respetó el formato: pídele que lo repita usando las etiquetas exactas.</p></div>';
+  try{ doc.save(archivo); }catch(e){}
+  marcar('pdf'); b.disabled=false; b.textContent='Volver a generar'; aviso('PDF listo');
+  el('z-pdf').scrollIntoView({behavior:'smooth'});
+
+  }catch(err){
+    el('z-pdf').innerHTML='<div class="caja" style="border-color:#C9553D">'+
+      '<div class="sub" style="margin:0 0 8px;color:#E07A61">No se pudo armar el PDF</div>'+
+      '<p style="margin:0;font-size:13.5px">'+String(err&&err.message||err)+'</p></div>';
+    b.disabled=false; b.textContent='Descargar mi PDF';
+  }
+});
+</script>
