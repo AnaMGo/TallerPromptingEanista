@@ -34,6 +34,14 @@ p{margin:0 0 15px;color:var(--arena-80)}
 .claim{font-family:var(--display);font-weight:500;font-size:1.02rem;line-height:1.45;color:var(--arena);border-left:3px solid var(--verde);padding-left:16px;margin:22px 0}
 strong{color:var(--arena);font-weight:700}
 
+.como{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin:0 0 34px;padding:28px 0;
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+@media(max-width:640px){.como{grid-template-columns:1fr;gap:22px;padding:24px 0}}
+.como .num{font-family:var(--display);font-weight:700;font-size:1.55rem;color:var(--verde);line-height:1;margin-bottom:10px}
+.como h4{font-family:var(--display);font-weight:700;font-size:1.02rem;margin:0 0 7px;letter-spacing:-.012em;color:var(--arena)}
+.como p{font-size:13.5px;line-height:1.5;margin:0;color:var(--arena-80)}
+.avisoc{border-left:3px solid var(--verde);background:rgba(59,172,82,.09);padding:16px 20px;margin:22px 0}
+.avisoc p{margin:0;font-size:14px;color:var(--arena)}
 .pasos{display:flex;flex-wrap:wrap;margin:0 0 32px}
 .pso{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--arena-60);padding:6px 18px 6px 0}
 .pso .b{width:7px;height:7px;background:var(--linea);transition:.3s}
@@ -88,6 +96,24 @@ input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
   <p class="formula">(<span class="e">Emprendimiento Sostenible</span> × <span class="h">Poder Humano</span>)<span class="t">Tech AI Maker</span> = <span class="a">Abundancia para la humanidad</span></p>
 </header>
 
+<section class="como">
+  <div>
+    <div class="num">01</div>
+    <h4>Cuéntale tu clase</h4>
+    <p>Seis campos, dos minutos. Con eso el taller arma una instrucción calibrada con el Modelo Educativo.</p>
+  </div>
+  <div>
+    <div class="num">02</div>
+    <h4>Pégala en tu IA</h4>
+    <p>Copias esa instrucción y la pegas en Copilot, ChatGPT, Gemini o Claude. La IA te responde ahí.</p>
+  </div>
+  <div>
+    <div class="num">03</div>
+    <h4>Vuelve con la respuesta</h4>
+    <p>Copias lo que te contestó, lo pegas aquí y descargas tu PDF con el diseño completo, listo para el aula.</p>
+  </div>
+</section>
+
 <div class="pasos">
   <div class="pso" data-on="1"><span class="b"></span>1 · Tu clase</div>
   <div class="pso" data-k="ins"><span class="b"></span>2 · Tu instrucción</div>
@@ -128,7 +154,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
 
 <section id="z-ins" class="oculto">
   <h2>Tu instrucción</h2>
-  <p>Copia este texto y pégalo en la inteligencia artificial que uses. Sirve en Copilot, ChatGPT, Gemini o Claude, y también en el asistente institucional. Lleva adentro todo el marco del modelo, así que no necesitas explicarle nada más.</p>
+  <p>Copia este texto completo y pégalo en la inteligencia artificial que uses. Lleva adentro todo el marco del modelo, así que no tienes que explicarle nada más ni escribirle nada antes.</p>
   <textarea id="instruccion" readonly></textarea>
   <div class="acciones"><button class="btn" id="btn-copiar">Copiar la instrucción</button></div>
   <div class="sub">Ábrela donde prefieras</div>
@@ -138,15 +164,17 @@ input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
     <a class="destino" href="https://gemini.google.com/" target="_blank" rel="noopener">Gemini</a>
     <a class="destino" href="https://claude.ai/" target="_blank" rel="noopener">Claude</a>
   </div>
-  <p class="nota">Si tu institución tiene un asistente propio, úsalo. Funciona igual.</p>
-  <div class="acciones"><button class="btn btn-2" id="btn-ir-dis">Ya la pegué, continuar</button></div>
+  <div class="avisoc">
+    <p><strong>No cierres esta pestaña.</strong> Abre tu IA en otra, pega la instrucción y espera a que responda. Cuando termine, selecciona toda su respuesta, cópiala y vuelve aquí para recibir tu PDF.</p>
+  </div>
+  <div class="acciones"><button class="btn btn-2" id="btn-ir-dis">Ya tengo la respuesta</button></div>
 </section>
 
 <section id="z-dis" class="oculto">
   <h2>Tu diseño</h2>
-  <p>Pega aquí, tal cual, lo que te devolvió la inteligencia artificial. Selecciona toda la respuesta, de principio a fin. El taller la maqueta con la identidad de la universidad.</p>
+  <p>Pega abajo, tal cual, lo que te devolvió la inteligencia artificial. Selecciona toda la respuesta, desde el título hasta la última línea: si copias solo una parte, el PDF sale incompleto. No hace falta que ordenes ni limpies nada, el taller se encarga.</p>
   <div class="campo"><textarea id="pegado" placeholder="Pega aquí la respuesta completa"></textarea></div>
-  <div class="acciones"><button class="btn" id="btn-pdf">Descargar mi PDF</button></div>
+  <div class="acciones"><button class="btn" id="btn-pdf">Maquetar y descargar mi PDF</button></div>
   <div id="z-pdf"></div>
   <p class="claim">No evalúas solo lo que sabe. Evalúas lo que hace, lo que resuelve y lo que produce.</p>
   <p class="cierre">Eanizar empieza contigo.</p>
@@ -221,56 +249,24 @@ Título: [nombre concreto del reto, sin adjetivos]
 Ficha: [nivel] · Domina [factor] · [estrategia institucional]
 Gancho: [máximo 30 palabras: la situación con la que abro la sesión y que hace que el tema importe]
 
-## El punto de partida
+## Parte 1. El punto de partida
 
 Hoy: [qué logra ya la clase que te describí. Una frase, sin adularme y sin condescendencia. Nombra lo que sí funciona.]
-Falta: [qué le falta para operar como reto, dicho en términos del modelo. Una frase.]
+Con Emprendimiento Sostenible: [qué le agregaría este componente a la clase que te describí. Una frase concreta, aplicada a mi tema, no una definición.]
+Con Poder Humano: [lo mismo para este componente. Recuerda que son conductas verificables, no actitudes.]
+Con Tech AI Maker: [lo mismo para este componente. No basta con usar una herramienta: el estudiante tiene que juzgar, auditar o decidir sobre lo que la IA produjo.]
 Trampa: [la versión que parece cumplir el modelo y no lo cumple, con la razón exacta por la que se distingue de lo que me vas a proponer.]
 
-## La sesión
+## Parte 2. La actividad rediseñada
 
-${T[0]} · [nombre del momento]
-Tú: [qué hago yo, una frase]
-Ellos: [qué hacen ellos, una frase]
-
-[Repite ese bloque de tres líneas para los cuatro momentos, con estos rangos exactos: ${T[0]}, ${T[1]}, ${T[2]} y ${T[3]}. No los cambies: suman los ${p.dur} minutos reales de mi clase.]
-
-## Antes de la clase
-
-Prepara: [algo concreto que debo tener listo antes de entrar al aula]
-Prepara: [segundo]
-Prepara: [tercero]
-Riesgo: [lo que más probablemente salga mal en esta sesión y cómo lo resuelvo en el momento, en una frase]
-Riesgo: [un segundo riesgo con su salida]
-
-## La evidencia
+### La evidencia
 
 Evidencia: [qué producen y qué miro para juzgarlo, una frase concreta]
 Criterio: [primero, observable]
 Criterio: [segundo, observable]
 Criterio: [tercero, observable]
 
-## La rúbrica
-
-Rúbrica: [repite aquí el primer criterio, tal cual]
-Inicial: [qué se ve en este nivel, máximo 18 palabras, describiendo conducta observable]
-Básico: [máximo 18 palabras]
-Intermedio: [máximo 18 palabras]
-Avanzado: [máximo 18 palabras]
-
-Rúbrica: [repite el segundo criterio]
-Inicial: [...]
-Básico: [...]
-Intermedio: [...]
-Avanzado: [...]
-
-Rúbrica: [repite el tercer criterio]
-Inicial: [...]
-Básico: [...]
-Intermedio: [...]
-Avanzado: [...]
-
-## Las cinco preguntas
+### Las cinco preguntas
 
 Competencia: [≤22 palabras]
 Experiencia: [≤22 palabras]
@@ -278,7 +274,7 @@ Desempeño: [≤22 palabras]
 Transferencia: [≤22 palabras]
 Abundancia: [≤22 palabras]
 
-## La fórmula, verificada
+### La fórmula, verificada
 
 Factor: Emprendimiento Sostenible
 Capacidad: [nombre exacto]
@@ -306,7 +302,45 @@ Abundancia en estudiantes: [≤22 palabras]
 Abundancia en organizaciones: [≤22 palabras]
 Abundancia en el entorno: [≤22 palabras]
 
-## La unidad
+## Parte 3. Cómo la llevas a cabo
+
+### Antes de la clase
+
+Prepara: [algo concreto que debo tener listo antes de entrar al aula]
+Prepara: [segundo]
+Prepara: [tercero]
+Riesgo: [lo que más probablemente salga mal en esta sesión y cómo lo resuelvo en el momento, en una frase]
+Riesgo: [un segundo riesgo con su salida]
+
+### La sesión
+
+${T[0]} · [nombre del momento]
+Tú: [qué hago yo, una frase]
+Ellos: [qué hacen ellos, una frase]
+
+[Repite ese bloque de tres líneas para los cuatro momentos, con estos rangos exactos: ${T[0]}, ${T[1]}, ${T[2]} y ${T[3]}. No los cambies: suman los ${p.dur} minutos reales de mi clase.]
+
+### La rúbrica
+
+Rúbrica: [repite aquí el primer criterio, tal cual]
+Inicial: [qué se ve en este nivel, máximo 18 palabras, describiendo conducta observable]
+Básico: [máximo 18 palabras]
+Intermedio: [máximo 18 palabras]
+Avanzado: [máximo 18 palabras]
+
+Rúbrica: [repite el segundo criterio]
+Inicial: [...]
+Básico: [...]
+Intermedio: [...]
+Avanzado: [...]
+
+Rúbrica: [repite el tercer criterio]
+Inicial: [...]
+Básico: [...]
+Intermedio: [...]
+Avanzado: [...]
+
+### La unidad
 
 Unidad: [nombre de la unidad]
 
@@ -339,7 +373,7 @@ el('btn-gen').addEventListener('click',()=>{
 el('btn-copiar').addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText(el('instruccion').value);}
   catch{el('instruccion').select();document.execCommand('copy');}
-  aviso('Copiado. Pégalo en tu IA.');
+  aviso('Copiado. Pégalo en tu IA y vuelve con la respuesta.');
 });
 el('btn-ir-dis').addEventListener('click',()=>{
   el('z-dis').classList.remove('oculto'); marcar('dis');
@@ -363,7 +397,7 @@ function etiqueta(linea){
 }
 
 function leer(texto){
-  const D = { titulo:'', ficha:'', gancho:'', hoy:'', falta:'', prepara:[], riesgos:[], rubricas:[],
+  const D = { titulo:'', ficha:'', gancho:'', hoy:'', falta:'', mej:{}, prepara:[], riesgos:[], rubricas:[],
               momentos:[], evidencia:'', criterios:[],
               p5:{}, contra:'', factores:[], exponente:'', ser:'', saber:'', saberhacer:'',
               ab:{}, unidad:'', sesiones:[], producto:'', progresion:'', libre:[] };
@@ -410,6 +444,9 @@ function leer(texto){
       if(k==='abundancia'){ D.p5.abundancia=v; continue; }
       if(k==='hoy'){ D.hoy=v; continue; }
       if(k==='falta'||k==='lo que falta'){ D.falta=v; continue; }
+      if(k==='con emprendimiento sostenible'){ D.mej.es=v; continue; }
+      if(k==='con poder humano'){ D.mej.ph=v; continue; }
+      if(k==='con tech ai maker'){ D.mej.tam=v; continue; }
       if(k==='trampa'||k==='la trampa'||k==='contraejemplo'){ D.contra=v; continue; }
       if(k==='factor'){
         if(ses){ ses.factor=v; continue; }
@@ -435,7 +472,7 @@ function leer(texto){
 
     // Encabezados conocidos: se ignoran, ya damos nosotros la maqueta
     const n=norm(l);
-    if(/^(la sesion|la evidencia|las cinco preguntas|lo que parece|la formula|la semana|la unidad|el punto de partida|antes de la clase|la rubrica)/.test(n)) { mom=null; fac=null; ses=null; continue; }
+    if(/^(parte\s*\d|la sesion|la evidencia|las cinco preguntas|lo que parece|la formula|la semana|la unidad|el punto de partida|antes de la clase|la rubrica|la actividad redise|como la llevas)/.test(n)) { mom=null; fac=null; ses=null; continue; }
 
     if(!D.titulo && l.length<90 && D.momentos.length===0){ D.titulo=l; continue; }
     D.libre.push(l);
@@ -456,9 +493,9 @@ async function cargarJsPDF(){ if(window.jspdf) return true;
 
 el('btn-pdf').addEventListener('click', async ()=>{
   const crudo=el('pegado').value.trim();
-  if(!crudo){aviso('Pega primero la respuesta de tu IA.');return;}
+  if(!crudo){aviso('Primero pega aquí la respuesta de tu IA.');return;}
   const b=el('btn-pdf'); b.disabled=true; b.textContent='Maquetando…';
-  if(!await cargarJsPDF()){b.disabled=false;b.textContent='Descargar mi PDF';aviso('No se pudo cargar el generador');return;}
+  if(!await cargarJsPDF()){b.disabled=false;b.textContent='Maquetar y descargar mi PDF';aviso('No se pudo cargar el generador');return;}
 
   try{
   const D=leer(crudo);
@@ -509,6 +546,17 @@ el('btn-pdf').addEventListener('click', async ()=>{
   const h2=t=>{ salto(44); y+=10; doc.setDrawColor(...VERDE); doc.setLineWidth(1.5); doc.line(M,y-4.6,M+10,y-4.6);
     doc.setFont('helvetica','bold'); doc.setFontSize(13.5); doc.setTextColor(...NEGRO);
     doc.text(seguro(t),M,y+2.6); y+=12.5; };
+  const parte=(num,titulo)=>{
+    if(y>40){ pie(); doc.addPage(); cabecera(); }
+    y+=2;
+    doc.setFillColor(...NEGRO); doc.rect(M,y-5,AN,23,'F');
+    doc.setFillColor(...VERDE); doc.rect(M,y-5,3,23,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(6.8); doc.setTextColor(...VERDE);
+    doc.text('PARTE '+num,M+10,y+1.8);
+    doc.setFontSize(15); doc.setTextColor(...ARENA);
+    doc.text(seguro(titulo),M+10,y+11.8);
+    doc.setTextColor(...NEGRO); y+=27;
+  };
   const etq=t=>{ salto(19); doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...VERDE);
     doc.text(seguro(t).toUpperCase(),M,y); doc.setTextColor(...NEGRO); y+=5; };
 
@@ -539,9 +587,9 @@ el('btn-pdf').addEventListener('click', async ()=>{
             p.grupo,p.fecha].filter(Boolean).join('  ·  '),M,y);
   doc.setTextColor(...NEGRO); y+=6;
 
-  /* — El punto de partida — */
-  if(D.hoy||D.falta||D.contra){
-    h2('El punto de partida');
+  /* — PARTE 1 · El punto de partida — */
+  if(D.hoy||D.falta||D.contra||D.mej.es||D.mej.ph||D.mej.tam){
+    parte('01','El punto de partida');
     [['Hoy',D.hoy],['Lo que falta',D.falta]].forEach(r=>{
       if(!r[1]) return;
       const h=Math.max(alto(r[1],9.6,ANV),4.6); salto(h+8);
@@ -549,6 +597,21 @@ el('btn-pdf').addEventListener('click', async ()=>{
       doc.text(r[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
       y+=escribir(r[1],9.6,'normal',XT,ANV)+3.4;
     });
+    const mej=[['Emprendimiento Sostenible',D.mej.es,VERDE],
+               ['Poder Humano',D.mej.ph,AZUL],
+               ['Tech AI Maker',D.mej.tam,MORADO]].filter(r=>r[1]);
+    if(mej.length){
+      y+=3; etq('Qué le aporta cada componente del modelo');
+      mej.forEach(r=>{
+        salto(alto(r[1],9.4,W-M-(M+6))+14);
+        const yIni=y-3.6;
+        doc.setFont('helvetica','bold'); doc.setFontSize(9.8); doc.setTextColor(...r[2]);
+        doc.text(seguro(r[0]),M+6,y+0.4); doc.setTextColor(...NEGRO); y+=5.8;
+        y+=escribir(r[1],9.4,'normal',M+6,W-M-(M+6))+2.2;
+        doc.setFillColor(...r[2]); doc.rect(M,yIni,2.4,Math.max(y-yIni-2.4,4),'F');
+        y+=5.5;
+      });
+    }
     if(D.contra){
       y+=2;
       const h=alto(D.contra,9.2,ANV); salto(h+11);
@@ -560,48 +623,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
     }
   }
 
-  /* — La sesión — */
-  if(D.momentos.length){
-    h2('La sesión');
-    D.momentos.forEach(m=>{
-      const hNom=alto(m.nombre,10.5,ANN);
-      const hTu=m.tu?alto(m.tu,9,ANT):0, hEl=m.ellos?alto(m.ellos,9,ANT):0;
-      salto(hNom+hTu+hEl+15);
-      doc.setDrawColor(...LIN); doc.setLineWidth(.2); doc.line(M,y-4.4,W-M,y-4.4);
-      const yIni=y-2.6;
-      doc.setFont('helvetica','bold'); doc.setFontSize(8.4); doc.setTextColor(...VERDE);
-      doc.text(seguro(m.min),M+6,y+0.6); doc.setTextColor(...NEGRO);
-      y+=escribir(m.nombre,10.5,'bold',XC,ANN)+2.2;
-      [['TÚ',m.tu],['ELLOS',m.ellos]].forEach(r=>{
-        if(!r[1]) return;
-        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
-        doc.text(r[0],XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
-        y+=escribir(r[1],9,'normal',XT,ANT)+1.6;
-      });
-      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
-      y+=6;
-    });
-  }
-
-  /* — Antes de la clase — */
-  if(D.prepara.length||D.riesgos.length){
-    h2('Antes de la clase');
-    if(D.prepara.length){
-      etq('Lo que llevas listo');
-      D.prepara.forEach(c=>{ salto(alto(c,9.4,AN-7)+4);
-        doc.setFillColor(...VERDE); doc.rect(M,y-1.7,1.8,1.8,'F');
-        y+=escribir(c,9.4,'normal',M+6,AN-7)+2.6; });
-      y+=3;
-    }
-    if(D.riesgos.length){
-      etq('Lo que puede salir mal');
-      D.riesgos.forEach(c=>{ const h=alto(c,9.2,ANV); salto(h+9);
-        doc.setFillColor(...SUAVE); doc.rect(M,y-3.6,AN,h+5.8,'F');
-        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
-        doc.text('RIESGO',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
-        y+=escribir(c,9.2,'normal',XT,ANV)+8; });
-    }
-  }
+  if(D.evidencia||D.criterios.length||D.p5.competencia||D.factores.length) parte('02','La actividad rediseñada');
 
   /* — La evidencia — */
   if(D.evidencia||D.criterios.length){
@@ -616,30 +638,6 @@ el('btn-pdf').addEventListener('click', async ()=>{
       });
       y+=2;
     }
-  }
-
-  /* — La rúbrica — */
-  if(D.rubricas.length){
-    h2('La rúbrica');
-    parrafo('Cuatro niveles por criterio. La diferencia entre uno y el siguiente es algo que puedes señalar con el dedo sobre la entrega.',9,'normal',0,GRIS);
-    y+=1;
-    D.rubricas.forEach(r=>{
-      const niv=[['Inicial',r.inicial],['Básico',r.basico],['Intermedio',r.intermedio],['Avanzado',r.avanzado]].filter(x=>x[1]);
-      let hTot=9; niv.forEach(x=>hTot+=Math.max(alto(x[1],8.8,ANV),4.2)+2.4);
-      salto(hTot+9);
-      const yIni=y-2.6;
-      doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...NEGRO);
-      y+=escribir(r.nombre,10,'bold',M+6,W-M-(M+6))+2.6;
-      niv.forEach((x,i)=>{
-        const h=Math.max(alto(x[1],8.8,ANV),4.2);
-        if(i%2===0){ doc.setFillColor(...SUAVE); doc.rect(M+6,y-3.4,AN-6,h+3.4,'F'); }
-        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
-        doc.text(x[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
-        y+=escribir(x[1],8.8,'normal',XT,ANV)+2.4;
-      });
-      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
-      y+=6.5;
-    });
   }
 
   /* — Las cinco preguntas — */
@@ -723,6 +721,75 @@ el('btn-pdf').addEventListener('click', async ()=>{
   trio('Ser, Saber y Saber Hacer',[['Ser',D.ser],['Saber',D.saber],['Saber Hacer',D.saberhacer]]);
   trio('Abundancia para la humanidad',[['Estudiantes',D.ab.e],['Organizaciones',D.ab.o],['Entorno',D.ab.t]]);
 
+  if(D.prepara.length||D.riesgos.length||D.momentos.length||D.rubricas.length||D.sesiones.length) parte('03','Cómo la llevas a cabo');
+
+  /* — Antes de la clase — */
+  if(D.prepara.length||D.riesgos.length){
+    h2('Antes de la clase');
+    if(D.prepara.length){
+      etq('Lo que llevas listo');
+      D.prepara.forEach(c=>{ salto(alto(c,9.4,AN-7)+4);
+        doc.setFillColor(...VERDE); doc.rect(M,y-1.7,1.8,1.8,'F');
+        y+=escribir(c,9.4,'normal',M+6,AN-7)+2.6; });
+      y+=3;
+    }
+    if(D.riesgos.length){
+      etq('Lo que puede salir mal');
+      D.riesgos.forEach(c=>{ const h=alto(c,9.2,ANV); salto(h+9);
+        doc.setFillColor(...SUAVE); doc.rect(M,y-3.6,AN,h+5.8,'F');
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text('RIESGO',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(c,9.2,'normal',XT,ANV)+8; });
+    }
+  }
+
+  /* — La sesión — */
+  if(D.momentos.length){
+    h2('La sesión');
+    D.momentos.forEach(m=>{
+      const hNom=alto(m.nombre,10.5,ANN);
+      const hTu=m.tu?alto(m.tu,9,ANT):0, hEl=m.ellos?alto(m.ellos,9,ANT):0;
+      salto(hNom+hTu+hEl+15);
+      doc.setDrawColor(...LIN); doc.setLineWidth(.2); doc.line(M,y-4.4,W-M,y-4.4);
+      const yIni=y-2.6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(8.4); doc.setTextColor(...VERDE);
+      doc.text(seguro(m.min),M+6,y+0.6); doc.setTextColor(...NEGRO);
+      y+=escribir(m.nombre,10.5,'bold',XC,ANN)+2.2;
+      [['TÚ',m.tu],['ELLOS',m.ellos]].forEach(r=>{
+        if(!r[1]) return;
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(r[0],XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(r[1],9,'normal',XT,ANT)+1.6;
+      });
+      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
+      y+=6;
+    });
+  }
+
+  /* — La rúbrica — */
+  if(D.rubricas.length){
+    h2('La rúbrica');
+    parrafo('Cuatro niveles por criterio. La diferencia entre uno y el siguiente es algo que puedes señalar con el dedo sobre la entrega.',9,'normal',0,GRIS);
+    y+=1;
+    D.rubricas.forEach(r=>{
+      const niv=[['Inicial',r.inicial],['Básico',r.basico],['Intermedio',r.intermedio],['Avanzado',r.avanzado]].filter(x=>x[1]);
+      let hTot=9; niv.forEach(x=>hTot+=Math.max(alto(x[1],8.8,ANV),4.2)+2.4);
+      salto(hTot+9);
+      const yIni=y-2.6;
+      doc.setFont('helvetica','bold'); doc.setFontSize(10); doc.setTextColor(...NEGRO);
+      y+=escribir(r.nombre,10,'bold',M+6,W-M-(M+6))+2.6;
+      niv.forEach((x,i)=>{
+        const h=Math.max(alto(x[1],8.8,ANV),4.2);
+        if(i%2===0){ doc.setFillColor(...SUAVE); doc.rect(M+6,y-3.4,AN-6,h+3.4,'F'); }
+        doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
+        doc.text(x[0].toUpperCase(),XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        y+=escribir(x[1],8.8,'normal',XT,ANV)+2.4;
+      });
+      doc.setFillColor(...VERDE); doc.rect(M,yIni,1.8,Math.max(y-yIni-2.4,4),'F');
+      y+=6.5;
+    });
+  }
+
   /* — La semana — */
   if(D.sesiones.length||D.unidad){
     h2('La unidad'+(D.unidad?': '+D.unidad:''));
@@ -781,14 +848,14 @@ el('btn-pdf').addEventListener('click', async ()=>{
     '<a class="btn btn-2" href="'+url+'" target="_blank" rel="noopener">Abrirlo en otra pestaña</a>'+
     '</div><p class="diag">Reconocí <b>'+leidos+'</b>. Si algún número está en cero, la IA no respetó el formato: pídele que lo repita usando las etiquetas exactas.</p></div>';
   try{ doc.save(archivo); }catch(e){}
-  marcar('pdf'); b.disabled=false; b.textContent='Volver a generar'; aviso('PDF listo');
+  marcar('pdf'); b.disabled=false; b.textContent='Volver a maquetar'; aviso('PDF listo');
   el('z-pdf').scrollIntoView({behavior:'smooth'});
 
   }catch(err){
     el('z-pdf').innerHTML='<div class="caja" style="border-color:#C9553D">'+
       '<div class="sub" style="margin:0 0 8px;color:#E07A61">No se pudo armar el PDF</div>'+
       '<p style="margin:0;font-size:13.5px">'+String(err&&err.message||err)+'</p></div>';
-    b.disabled=false; b.textContent='Descargar mi PDF';
+    b.disabled=false; b.textContent='Maquetar y descargar mi PDF';
   }
 });
 </script>
