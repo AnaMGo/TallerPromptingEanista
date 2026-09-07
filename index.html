@@ -93,7 +93,7 @@ input:focus,textarea:focus,select:focus{border-color:var(--verde);outline:none}
   <h1>Diseña tu experiencia</h1>
   <p class="bajada">Hay profes que enseñan y hay catalizadores que activan lo que el estudiante todavía no sabe que tiene.</p>
   <p>Ya sabes tu materia. Lo que cambia aquí es el diseño: en lugar de contenido que se reproduce en un examen, armas una situación que el estudiante tiene que resolver sin manual, donde decide, se equivoca y produce algo que puedes mirar. Escribe abajo un tema que vayas a dictar pronto. Sales con la sesión armada, con la semana donde encaja y con un PDF listo para tu plan de clase.</p>
-  <p class="formula">(<span class="e">Emprendimiento Sostenible</span> × <span class="h">Poder Humano</span>)<span class="t">Tech AI Maker</span> = <span class="a">Abundancia para la humanidad</span></p>
+  <p class="formula">(<span class="e">Emprendimiento Sostenible</span> + <span class="h">Poder Humano</span>)<span class="t">Tech AI Maker</span> = <span class="a">Abundancia para la humanidad</span></p>
 </header>
 
 <section class="como">
@@ -218,8 +218,8 @@ const tam = p.nivel==='Posgrado'
 return `Actúa como asistente de diseño pedagógico del Modelo Educativo EAN 2026 de la Universidad EAN, Bogotá. Trabaja solo con el marco que te doy abajo; no incorpores autores ni teorías externas.
 
 LA FÓRMULA
-(Emprendimiento Sostenible × Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad.
-La tecnología amplifica exponencialmente el poder de emprender de manera sostenible y con criterio humano. Si un factor es cero, el resultado es cero.
+(Emprendimiento Sostenible + Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad.
+La tecnología amplifica exponencialmente el poder de emprender de manera sostenible y con criterio humano. Emprendimiento Sostenible y Poder Humano se suman en la base, y Tech AI Maker eleva esa base: amplifica lo que ya existe y no puede amplificar lo que falta. Por eso un componente débil no se compensa subiendo la potencia, y el documento subraya que el Poder Humano no es optativo, sino condición para que el emprendimiento sea sostenible y la tecnología se implemente con criterio ético.
 
 LAS TRES COMPETENCIAS
 1. EMPRENDIMIENTO SOSTENIBLE. "Construye procesos emprendedores e innovadores para crear o transformar organizaciones y entornos hacia la sostenibilidad, generando valor en contextos diversos e inciertos." Capacidades, nombres exactos: Gestión de la incertidumbre / Asunción de riesgos adaptativos / Orientación a la acción y proactividad / Aprendizaje a partir del error (resiliencia) / Pensamiento sistémico / Capacidad de interpretar la complejidad.
@@ -298,19 +298,19 @@ Factor: Emprendimiento Sostenible
 Capacidad: [nombre exacto]
 Dónde ocurre: [momento de la secuencia]
 Cómo: [≤30 palabras]
-Si se retira: [≤25 palabras]
+Qué se pierde: [qué deja de ocurrir en el reto si este componente falta, ≤25 palabras. No digas que todo se anula: describe con precisión qué capacidad concreta deja de desarrollarse y con qué consecuencia para el estudiante.]
 
 Factor: Poder Humano
 Capacidad: [nombre exacto]
 Dónde ocurre: [...]
 Cómo: [...]
-Si se retira: [...]
+Qué se pierde: [...]
 
 Factor: Tech AI Maker
 Capacidad: [nombre exacto]
 Dónde ocurre: [...]
 Cómo: [...]
-Si se retira: [...]
+Qué se pierde: [...]
 
 Exponente: [por qué Tech AI Maker actúa como exponente y no como un tercer sumando, ≤40 palabras]
 Ser: [≤22 palabras]
@@ -484,7 +484,7 @@ function leer(texto){
       if(k==='capacidad'){ if(fac) fac.cap=v; continue; }
       if(k==='donde ocurre'||k==='donde'){ if(fac) fac.donde=v; continue; }
       if(k==='como'){ if(fac) fac.como=v; continue; }
-      if(k==='si se retira'||k==='si se retira este factor'){ if(fac) fac.sin=v; continue; }
+      if(k==='que se pierde'||k==='si se retira'||k==='si se retira este factor'){ if(fac) fac.sin=v; continue; }
       if(k==='exponente'||k==='por que es exponente'){ D.exponente=v; fac=null; continue; }
       if(k==='ser'){ D.ser=v; continue; }
       if(k==='saber'){ D.saber=v; continue; }
@@ -551,7 +551,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
   };
   const pie=()=>{
     doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...GRIS);
-    doc.text('(Emprendimiento Sostenible × Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad',M,H-10);
+    doc.text('(Emprendimiento Sostenible + Poder Humano) ^ Tech AI Maker = Abundancia para la humanidad',M,H-10);
     doc.text(String(pag).padStart(2,'0'),W-M,H-10,{align:'right'});
     doc.setTextColor(...NEGRO);
   };
@@ -720,7 +720,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
   /* — La fórmula, verificada — */
   if(D.factores.length){
     h2('La fórmula, verificada');
-    parrafo('Cada factor con la capacidad institucional que le corresponde, el momento exacto donde ocurre y lo que quedaría del reto si ese factor se retirara.',9,'normal',0,GRIS);
+    parrafo('Cada componente con la capacidad institucional que le corresponde, el momento exacto donde ocurre y lo que el reto dejaría de desarrollar si faltara.',9,'normal',0,GRIS);
     y+=1;
     D.factores.forEach(f=>{
       const n=norm(f.nom);
@@ -746,7 +746,7 @@ el('btn-pdf').addEventListener('click', async ()=>{
         const h=alto(f.sin,8.8,ANV);
         doc.setFillColor(...SUAVE); doc.rect(M+6,y-3.8,AN-6,h+6,'F');
         doc.setFont('helvetica','bold'); doc.setFontSize(6.4); doc.setTextColor(...GRIS);
-        doc.text('SI SE RETIRA',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
+        doc.text('QUÉ SE PIERDE',XL,y,{align:'right'}); doc.setTextColor(...NEGRO);
         y+=escribir(f.sin,8.8,'normal',XT,ANV)+7;
       }
       doc.setFillColor(...col); doc.rect(M,yIni,2.6,y-yIni-2,'F');
